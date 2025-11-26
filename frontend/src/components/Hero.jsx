@@ -1,16 +1,31 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import heroVideo from '../assets/km_20251126_1080p_60f_20251126_231754.mp4';
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-darker via-primary-dark to-primary-gray" />
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        {/* Light Overlay for better text readability - reduced opacity */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-darker/40 via-primary-dark/30 to-primary-gray/40" />
+        {/* Minimal overlay for subtle contrast */}
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
       
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Reduced opacity to work with video */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary-red rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          className="absolute top-20 left-10 w-72 h-72 bg-primary-red rounded-full mix-blend-multiply filter blur-xl opacity-10"
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
@@ -22,7 +37,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary-blue rounded-full mix-blend-multiply filter blur-xl opacity-10"
           animate={{
             x: [0, -100, 0],
             y: [0, -50, 0],

@@ -19,6 +19,7 @@ import {
   FiHelpCircle,
   FiStar,
   FiActivity,
+  FiClock,
 } from 'react-icons/fi';
 import { FaDumbbell } from 'react-icons/fa';
 
@@ -68,6 +69,7 @@ const Layout = ({ children, setIsAuthenticated }) => {
     { path: '/progress', label: 'Progress Logs', icon: FiActivity },
     { path: '/timetable', label: 'Timetable', icon: FiCalendar },
     { path: '/customers', label: 'Customers', icon: FiUsers },
+    { path: '/attendance', label: 'Attendance', icon: FiClock },
     { path: '/contacts', label: 'Contacts', icon: FiMail },
     { path: '/payments', label: 'Payments', icon: FiDollarSign },
     { path: '/admins', label: 'Admins', icon: FiUserCheck },
@@ -112,10 +114,10 @@ const Layout = ({ children, setIsAuthenticated }) => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-primary-gray border-r border-primary-lightGray shadow-2xl z-50 sm:hidden overflow-y-auto"
+              className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-primary-gray border-r border-primary-lightGray shadow-2xl z-50 sm:hidden flex flex-col"
             >
-              {/* Sidebar Header */}
-              <div className="flex items-center justify-between p-6 border-b border-primary-lightGray">
+              {/* Sidebar Header - Fixed */}
+              <div className="flex items-center justify-between p-6 border-b border-primary-lightGray flex-shrink-0">
                 <div>
                   <h1 className="text-2xl font-bold gradient-text-red">Elite Gym</h1>
                   <p className="text-gray-400 text-sm mt-1">Admin Panel</p>
@@ -129,8 +131,8 @@ const Layout = ({ children, setIsAuthenticated }) => {
                 </motion.button>
               </div>
 
-              {/* Navigation */}
-              <nav className="p-4 space-y-2">
+              {/* Navigation - Scrollable */}
+              <nav className="flex-1 p-4 space-y-2 overflow-y-auto overflow-x-hidden sidebar-scrollbar-thin">
                 {menuItems.map((item, index) => {
                   const IconComponent = item.icon;
                   const isActive = location.pathname === item.path;
@@ -158,8 +160,8 @@ const Layout = ({ children, setIsAuthenticated }) => {
                 })}
               </nav>
 
-              {/* Logout Button */}
-              <div className="absolute bottom-4 left-4 right-4">
+              {/* Logout Button - Fixed */}
+              <div className="p-4 border-t border-primary-lightGray flex-shrink-0">
                 <button
                   onClick={handleLogout}
                   className="w-full px-4 py-3 bg-primary-lightGray text-white rounded-lg hover:bg-primary-red transition-all font-medium flex items-center justify-center space-x-2"
@@ -222,7 +224,7 @@ const Layout = ({ children, setIsAuthenticated }) => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto overflow-x-hidden">
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto overflow-x-hidden sidebar-scrollbar-thin">
           {menuItems.map((item) => {
             const IconComponent = item.icon;
             const isActive = location.pathname === item.path;

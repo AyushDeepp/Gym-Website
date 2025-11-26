@@ -104,5 +104,11 @@ export const submitTransformation = (data) => api.post('/transformation', data);
 export const getTransformations = (params) => api.get('/transformation', { params });
 export const removeTransformation = (id) => api.delete(`/transformation/${id}`);
 
+// Attendance
+export const checkIn = () => api.post('/attendance/checkin');
+export const checkOut = () => api.post('/attendance/checkout');
+export const getTodayAttendance = () => api.get('/attendance/today');
+export const getUserAttendance = (userId, params) => api.get(`/attendance/user/${userId}`, { params });
+
 export default api;
 

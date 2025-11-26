@@ -37,6 +37,30 @@ html {
   background: #00F5FF;
 }
 
+/* Thin Scrollbar for Mobile Sidebar */
+.sidebar-scrollbar-thin::-webkit-scrollbar {
+  width: 2px;
+}
+
+.sidebar-scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+}
+
+.sidebar-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Firefox scrollbar */
+.sidebar-scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
 /* Gradient Text */
 .gradient-text-red {
   background: linear-gradient(135deg, #FF5F1F 0%, #FF8A50 100%);

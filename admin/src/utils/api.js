@@ -118,5 +118,13 @@ export const updateCustomerNotes = (id, data) => api.put(`/admin/customers/${id}
 export const assignTrainer = (id, data) => api.put(`/admin/customers/${id}/assign-trainer`, data);
 export const deleteCustomer = (id) => api.delete(`/admin/customers/${id}`);
 
+// Attendance
+export const getAllAttendance = (params) => api.get('/attendance', { params });
+export const getUserAttendance = (userId, params) => api.get(`/attendance/user/${userId}`, { params });
+export const getAttendanceStats = (params) => api.get('/attendance/stats', { params });
+export const adminCheckIn = (data) => api.post('/attendance/admin/checkin', data);
+export const adminCheckOut = (data) => api.post('/attendance/admin/checkout', data);
+export const deleteAttendance = (id) => api.delete(`/attendance/${id}`);
+
 export default api;
 

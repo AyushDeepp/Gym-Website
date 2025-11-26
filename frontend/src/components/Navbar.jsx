@@ -318,10 +318,10 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-primary-darker border-r border-primary-gray shadow-2xl z-50 md:hidden overflow-y-auto"
+              className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-primary-darker border-r border-primary-gray shadow-2xl z-50 md:hidden flex flex-col"
             >
-              {/* Sidebar Header */}
-              <div className="flex items-center justify-between p-6 border-b border-primary-gray">
+              {/* Sidebar Header - Fixed */}
+              <div className="flex items-center justify-between p-6 border-b border-primary-gray flex-shrink-0">
                 <Link
                   to="/"
                   onClick={() => setIsOpen(false)}
@@ -338,8 +338,8 @@ const Navbar = () => {
                 </motion.button>
               </div>
 
-              {/* Sidebar Navigation - All Links */}
-              <nav className="p-4 space-y-2">
+              {/* Sidebar Navigation - Scrollable */}
+              <nav className="flex-1 p-4 space-y-2 overflow-y-auto overflow-x-hidden sidebar-scrollbar-thin">
                 {allNavLinks.map((link, index) => {
                   const IconComponent = link.icon;
                   const isActive = location.pathname === link.path;
@@ -378,8 +378,8 @@ const Navbar = () => {
                 })}
               </nav>
 
-              {/* Sidebar Footer */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-primary-gray bg-primary-darker">
+              {/* Sidebar Footer - Fixed */}
+              <div className="p-6 border-t border-primary-gray bg-primary-darker flex-shrink-0">
                 {isAuthenticated ? (
                   <div className="space-y-2">
                     <Link
@@ -416,7 +416,7 @@ const Navbar = () => {
                       className="block w-full mt-2 px-6 py-3 bg-primary-gray text-white font-semibold rounded-lg hover:bg-primary-lightGray transition-colors text-center"
                     >
                       Login
-                  </Link>
+                    </Link>
                 </div>
                 )}
               </div>

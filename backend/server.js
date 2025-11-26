@@ -21,6 +21,7 @@ import workoutRoutes from './routes/workoutRoutes.js';
 import dietRoutes from './routes/dietRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import transformationRoutes from './routes/transformationRoutes.js';
+import attendanceRoutes from './routes/attendanceRoutes.js';
 
 dotenv.config();
 
@@ -51,8 +52,8 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Database Connection
 import connectDB from './config/db.js';
@@ -74,6 +75,7 @@ app.use('/api/workouts', workoutRoutes);
 app.use('/api/diets', dietRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/transformation', transformationRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 // Health Check
 app.get('/api/health', (req, res) => {

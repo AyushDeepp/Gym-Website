@@ -15,6 +15,7 @@ import Diets from './pages/Diets';
 import FAQ from './pages/FAQ';
 import Transformations from './pages/Transformations';
 import Progress from './pages/Progress';
+import Attendance from './pages/Attendance';
 import Layout from './components/Layout';
 
 function App() {
@@ -223,6 +224,18 @@ function App() {
             isAuthenticated ? (
               <Layout setIsAuthenticated={setIsAuthenticated}>
                 <Customers />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/attendance"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Attendance />
               </Layout>
             ) : (
               <Navigate to="/login" replace />

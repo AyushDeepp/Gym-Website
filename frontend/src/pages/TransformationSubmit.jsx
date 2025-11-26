@@ -24,13 +24,68 @@ const TransformationSubmit = () => {
     loadMine();
   }, []);
 
-  const handleFile = (field, file) => {
+  const compressImage = (file, maxWidth = 1920, maxHeight = 1920, quality = 0.8) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          // Calculate new dimensions
+          if (width > height) {
+            if (width > maxWidth) {
+              height = (height * maxWidth) / width;
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = (width * maxHeight) / height;
+              height = maxHeight;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Convert to base64 with compression
+          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          resolve(compressedBase64);
+        };
+        img.onerror = () => {
+          // If image fails to load, use original
+          resolve(event.target.result);
+        };
+        img.src = event.target.result;
+      };
+      reader.onerror = () => {
+        resolve(null);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFile = async (field, file) => {
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setForm((prev) => ({ ...prev, [field]: event.target.result }));
-    };
-    reader.readAsDataURL(file);
+
+    // Check file size (max 10MB before compression)
+    if (file.size > 10 * 1024 * 1024) {
+      alert('Image size too large. Please use images under 10MB.');
+      return;
+    }
+
+    // Compress image before converting to base64
+    const compressedImage = await compressImage(file);
+    if (compressedImage) {
+      setForm((prev) => ({ ...prev, [field]: compressedImage }));
+    } else {
+      alert('Failed to process image. Please try again.');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -44,6 +99,8 @@ const TransformationSubmit = () => {
       setForm({ story: '', beforeImage: '', afterImage: '' });
     } catch (error) {
       console.error('Submit failed', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to submit transformation. Please try again with smaller images.';
+      alert(errorMessage);
     } finally {
       setSubmitting(false);
     }

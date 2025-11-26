@@ -20,6 +20,22 @@ export const submitTransformation = async (req, res) => {
       return res.status(400).json({ message: 'Before image, after image and story are required' });
     }
 
+    // Validate image size (base64 images should be under 10MB to leave room for other fields)
+    const beforeImageSize = beforeImage.length;
+    const afterImageSize = afterImage.length;
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes (base64 encoded)
+
+    if (beforeImageSize > maxSize || afterImageSize > maxSize) {
+      return res.status(400).json({ 
+        message: 'Image size too large. Please use images under 7MB (compressed).' 
+      });
+    }
+
+    // Validate story length
+    if (story.length > 5000) {
+      return res.status(400).json({ message: 'Story must be under 5000 characters' });
+    }
+
     const existingPending = await Transformation.findOne({
       userId: req.user._id,
       approved: false,
@@ -33,13 +49,35 @@ export const submitTransformation = async (req, res) => {
       userId: req.user._id,
       beforeImage,
       afterImage,
-      story,
+      story: story.trim(),
     });
 
     res.status(201).json(transformation);
   } catch (error) {
     console.error('Submit transformation error:', error);
-    res.status(500).json({ message: error.message });
+    
+    // Provide more specific error messages
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ 
+        message: 'Validation error', 
+        details: Object.values(error.errors).map(e => e.message).join(', ')
+      });
+    }
+    
+    if (error.name === 'MongoError' || error.name === 'MongoServerError') {
+      if (error.code === 11000) {
+        return res.status(409).json({ message: 'Duplicate entry' });
+      }
+      if (error.message && error.message.includes('too large')) {
+        return res.status(413).json({ 
+          message: 'Image size too large. Please compress your images before uploading.' 
+        });
+      }
+    }
+
+    res.status(500).json({ 
+      message: error.message || 'Failed to submit transformation. Please try again with smaller images.' 
+    });
   }
 };
 

@@ -30,12 +30,16 @@ import {
   deleteCustomer,
   getTrainers,
   getPlans,
+  getUserAttendance,
+  deleteAttendance,
 } from '../utils/api';
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [payments, setPayments] = useState([]);
+  const [attendance, setAttendance] = useState([]);
+  const [attendanceStats, setAttendanceStats] = useState(null);
   const [trainers, setTrainers] = useState([]);
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -111,6 +115,18 @@ const Customers = () => {
       const { data } = await getCustomerById(customerId);
       setSelectedCustomer(data.customer);
       setPayments(data.payments || []);
+      
+      // Fetch attendance data
+      try {
+        const attendanceRes = await getUserAttendance(customerId, { limit: 50 });
+        setAttendance(attendanceRes.data?.attendance || []);
+        setAttendanceStats(attendanceRes.data?.stats || null);
+      } catch (err) {
+        console.error('Error fetching attendance:', err);
+        setAttendance([]);
+        setAttendanceStats(null);
+      }
+      
       setShowModal(true);
       setActiveTab('overview');
     } catch (error) {
@@ -518,9 +534,97 @@ const Customers = () => {
 
                   {/* Attendance Tab */}
                   {activeTab === 'attendance' && (
-                    <div className="text-center py-12 text-gray-400">
-                      <p className="text-xl mb-2">Coming Soon</p>
-                      <p className="text-sm">Attendance tracking will be available in a future update.</p>
+                    <div className="space-y-6">
+                      {attendanceStats && (
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                          <div className="bg-primary-darker p-4 rounded-lg border border-primary-lightGray">
+                            <p className="text-gray-400 text-sm mb-1">Total Visits</p>
+                            <p className="text-2xl font-bold text-white">{attendanceStats.totalVisits || 0}</p>
+                          </div>
+                          <div className="bg-primary-darker p-4 rounded-lg border border-primary-lightGray">
+                            <p className="text-gray-400 text-sm mb-1">Total Hours</p>
+                            <p className="text-2xl font-bold text-white">
+                              {attendanceStats.totalHours ? attendanceStats.totalHours.toFixed(1) : '0'}
+                            </p>
+                          </div>
+                          <div className="bg-primary-darker p-4 rounded-lg border border-primary-lightGray">
+                            <p className="text-gray-400 text-sm mb-1">Avg Duration</p>
+                            <p className="text-2xl font-bold text-white">
+                              {attendanceStats.averageDuration
+                                ? `${Math.round(attendanceStats.averageDuration / 60)}h ${attendanceStats.averageDuration % 60}m`
+                                : '—'}
+                            </p>
+                          </div>
+                          <div className="bg-primary-darker p-4 rounded-lg border border-primary-lightGray">
+                            <p className="text-gray-400 text-sm mb-1">Current Streak</p>
+                            <p className="text-2xl font-bold text-white">{attendanceStats.currentStreak || 0} days</p>
+                          </div>
+                        </div>
+                      )}
+
+                      <div>
+                        <h3 className="text-lg font-bold text-white mb-4">Attendance History</h3>
+                        {attendance.length > 0 ? (
+                          <div className="space-y-2">
+                            {attendance.map((entry) => (
+                              <div
+                                key={entry._id}
+                                className="bg-primary-darker p-4 rounded-lg border border-primary-lightGray flex items-center justify-between"
+                              >
+                                <div>
+                                  <p className="text-white font-semibold">
+                                    {formatDate(entry.date)} - {new Date(entry.checkIn).toLocaleTimeString('en-US', {
+                                      hour: '2-digit',
+                                      minute: '2-digit',
+                                    })}
+                                    {entry.checkOut &&
+                                      ` to ${new Date(entry.checkOut).toLocaleTimeString('en-US', {
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                      })}`}
+                                  </p>
+                                  {entry.duration && (
+                                    <p className="text-gray-400 text-sm">
+                                      Duration: {Math.floor(entry.duration / 60)}h {entry.duration % 60}m
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <span
+                                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                      entry.status === 'checked-in'
+                                        ? 'bg-yellow-500/20 text-yellow-300'
+                                        : 'bg-green-500/20 text-green-300'
+                                    }`}
+                                  >
+                                    {entry.status === 'checked-in' ? 'Active' : 'Completed'}
+                                  </span>
+                                  <button
+                                    onClick={async () => {
+                                      if (window.confirm('Delete this attendance entry?')) {
+                                        try {
+                                          await deleteAttendance(entry._id);
+                                          setAttendance(attendance.filter((a) => a._id !== entry._id));
+                                          await handleViewCustomer(selectedCustomer._id);
+                                        } catch (error) {
+                                          console.error('Error deleting attendance:', error);
+                                          alert('Failed to delete attendance entry');
+                                        }
+                                      }
+                                    }}
+                                    className="p-2 text-red-400 hover:text-red-300 transition"
+                                    title="Delete"
+                                  >
+                                    <FiTrash2 />
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-gray-400 text-center py-8">No attendance records found.</p>
+                        )}
+                      </div>
                     </div>
                   )}
 
