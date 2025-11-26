@@ -17,6 +17,13 @@ import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Tools from './pages/Tools';
+import HelpCenter from './pages/HelpCenter';
+import DashboardWorkouts from './pages/DashboardWorkouts';
+import DashboardDiet from './pages/DashboardDiet';
+import DashboardProgress from './pages/DashboardProgress';
+import TransformationSubmit from './pages/TransformationSubmit';
+import Transformations from './pages/Transformations';
 
 function App() {
   // Prevent scroll restoration on page load
@@ -65,6 +72,22 @@ function App() {
             }
           />
           <Route
+            path="/tools"
+            element={
+              <PageTransition>
+                <Tools />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/help-center"
+            element={
+              <PageTransition>
+                <HelpCenter />
+              </PageTransition>
+            }
+          />
+          <Route
             path="/trainers"
             element={
               <PageTransition>
@@ -105,6 +128,14 @@ function App() {
             }
           />
           <Route
+            path="/transformations"
+            element={
+              <PageTransition>
+                <Transformations />
+              </PageTransition>
+            }
+          />
+          <Route
             path="/contact"
             element={
               <PageTransition>
@@ -126,6 +157,46 @@ function App() {
               <ProtectedRoute>
                 <PageTransition>
                   <Dashboard />
+                </PageTransition>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/workouts"
+            element={
+              <ProtectedRoute allowedRoles={['member', 'admin', 'super_admin']}>
+                <PageTransition>
+                  <DashboardWorkouts />
+                </PageTransition>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/diet"
+            element={
+              <ProtectedRoute allowedRoles={['member', 'admin', 'super_admin']}>
+                <PageTransition>
+                  <DashboardDiet />
+                </PageTransition>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/progress"
+            element={
+              <ProtectedRoute allowedRoles={['member', 'admin', 'super_admin']}>
+                <PageTransition>
+                  <DashboardProgress />
+                </PageTransition>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/transformation-submit"
+            element={
+              <ProtectedRoute allowedRoles={['member', 'admin', 'super_admin']}>
+                <PageTransition>
+                  <TransformationSubmit />
                 </PageTransition>
               </ProtectedRoute>
             }

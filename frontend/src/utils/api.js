@@ -82,5 +82,27 @@ export const updateUserProfile = (data) => api.put('/users/profile', data);
 export const getMembershipStatus = (userId) => api.get(`/membership/status/${userId}`);
 export const renewMembership = (userId, data) => api.put(`/membership/renew/${userId}`, data);
 
+// FAQ
+export const getFaqs = (params) => api.get('/faq', { params });
+
+// Tools (frontend only) - no API
+
+// Workouts
+export const getWorkoutPlans = (params) => api.get('/workouts', { params });
+export const getWorkoutPlan = (id) => api.get(`/workouts/${id}`);
+
+// Diets
+export const getDietPlans = (params) => api.get('/diets', { params });
+
+// Progress
+export const createProgressEntry = (data) => api.post('/progress', data);
+export const getProgressEntries = (userId) => api.get(`/progress/${userId}`);
+export const deleteProgressEntry = (entryId) => api.delete(`/progress/${entryId}`);
+
+// Transformations
+export const submitTransformation = (data) => api.post('/transformation', data);
+export const getTransformations = (params) => api.get('/transformation', { params });
+export const removeTransformation = (id) => api.delete(`/transformation/${id}`);
+
 export default api;
 

@@ -78,6 +78,32 @@ export const getContacts = () => api.get('/contact');
 export const getContact = (id) => api.get(`/contact/${id}`);
 export const updateContact = (id, data) => api.put(`/contact/${id}`, data);
 
+// FAQ
+export const getFaqs = () => api.get('/faq');
+export const createFaq = (data) => api.post('/faq', data);
+export const updateFaq = (id, data) => api.put(`/faq/${id}`, data);
+export const deleteFaq = (id) => api.delete(`/faq/${id}`);
+
+// Workouts
+export const getWorkoutPlans = () => api.get('/workouts');
+export const createWorkoutPlan = (data) => api.post('/workouts', data);
+export const updateWorkoutPlan = (id, data) => api.put(`/workouts/${id}`, data);
+export const deleteWorkoutPlan = (id) => api.delete(`/workouts/${id}`);
+
+// Diets
+export const getDietPlans = () => api.get('/diets');
+export const createDietPlan = (data) => api.post('/diets', data);
+export const updateDietPlan = (id, data) => api.put(`/diets/${id}`, data);
+export const deleteDietPlan = (id) => api.delete(`/diets/${id}`);
+
+// Progress
+export const getProgressEntries = (userId) => api.get(`/progress/${userId}`);
+
+// Transformations
+export const getTransformations = (params) => api.get('/transformation', { params });
+export const approveTransformation = (id, data) => api.put(`/transformation/approve/${id}`, data);
+export const deleteTransformation = (id) => api.delete(`/transformation/${id}`);
+
 // Payments
 export const getPayments = () => api.get('/payments/all');
 export const getPayment = (id) => api.get(`/payments/${id}`);

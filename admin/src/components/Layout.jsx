@@ -14,6 +14,11 @@ import {
   FiX,
   FiChevronLeft,
   FiChevronRight,
+  FiTarget,
+  FiBookOpen,
+  FiHelpCircle,
+  FiStar,
+  FiActivity,
 } from 'react-icons/fi';
 import { FaDumbbell } from 'react-icons/fa';
 
@@ -56,6 +61,11 @@ const Layout = ({ children, setIsAuthenticated }) => {
     { path: '/programs', label: 'Programs', icon: FaDumbbell },
     { path: '/trainers', label: 'Trainers', icon: FiUsers },
     { path: '/plans', label: 'Plans', icon: FiCreditCard },
+    { path: '/workouts', label: 'Workouts', icon: FiTarget },
+    { path: '/diets', label: 'Diet Plans', icon: FiBookOpen },
+    { path: '/faq', label: 'FAQ', icon: FiHelpCircle },
+    { path: '/transformations', label: 'Transformations', icon: FiStar },
+    { path: '/progress', label: 'Progress Logs', icon: FiActivity },
     { path: '/timetable', label: 'Timetable', icon: FiCalendar },
     { path: '/customers', label: 'Customers', icon: FiUsers },
     { path: '/contacts', label: 'Contacts', icon: FiMail },

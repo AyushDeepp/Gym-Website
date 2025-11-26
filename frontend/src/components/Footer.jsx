@@ -12,11 +12,14 @@ const Footer = () => {
       { path: '/programs', label: 'Programs' },
       { path: '/trainers', label: 'Trainers' },
       { path: '/plans', label: 'Membership Plans' },
+      { path: '/tools', label: 'BMI & Tools' },
     ],
     more: [
       { path: '/timetable', label: 'Class Timetable' },
       { path: '/gallery', label: 'Gallery' },
       { path: '/testimonials', label: 'Testimonials' },
+      { path: '/help-center', label: 'Help Center' },
+      { path: '/transformations', label: 'Transformations' },
       { path: '/contact', label: 'Contact Us' },
     ],
   };

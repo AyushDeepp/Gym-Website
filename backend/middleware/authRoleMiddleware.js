@@ -118,3 +118,107 @@ export const authAdminRole = (...allowedRoles) => {
   };
 };
 
+const extractToken = (req) => {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    return req.headers.authorization.split(' ')[1];
+  }
+
+  if (req.cookies?.token) {
+    return req.cookies.token;
+  }
+
+  if (req.cookies?.adminToken) {
+    return req.cookies.adminToken;
+  }
+
+  return null;
+};
+
+export const attachUserIfPresent = async (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+
+  const token = extractToken(req);
+  if (!token) {
+    return next();
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-in-production');
+
+    if (decoded.id) {
+      const user = await User.findById(decoded.id).select('-password');
+      if (user && user.isActive) {
+        req.user = user;
+      }
+    }
+  } catch (error) {
+    // silently ignore optional token errors
+  }
+
+  next();
+};
+
+export const attachAdminIfPresent = async (req, res, next) => {
+  if (req.admin) {
+    return next();
+  }
+
+  const token = extractToken(req);
+  if (!token) {
+    return next();
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-in-production');
+
+    if (decoded.adminId) {
+      const admin = await Admin.findById(decoded.adminId).select('-password');
+      if (admin) {
+        req.admin = admin;
+      }
+    }
+  } catch (error) {
+    // silently ignore
+  }
+
+  next();
+};
+
+export const protectUserOrAdmin = async (req, res, next) => {
+  const token = extractToken(req);
+
+  if (!token) {
+    return res.status(401).json({ message: 'Not authorized, no token' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-in-production');
+
+    if (decoded.id) {
+      const user = await User.findById(decoded.id).select('-password');
+      if (!user) {
+        return res.status(401).json({ message: 'User not found' });
+      }
+      if (!user.isActive) {
+        return res.status(403).json({ message: 'Account is deactivated' });
+      }
+      req.user = user;
+    } else if (decoded.adminId) {
+      const admin = await Admin.findById(decoded.adminId).select('-password');
+      if (!admin) {
+        return res.status(401).json({ message: 'Admin not found' });
+      }
+      req.admin = admin;
+    } else {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    next();
+  } catch (error) {
+    console.error('protectUserOrAdmin error:', error);
+    return res.status(401).json({ message: 'Not authorized, token failed' });
+  }
+};
+

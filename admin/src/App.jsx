@@ -10,6 +10,11 @@ import Contacts from './pages/Contacts';
 import Payments from './pages/Payments';
 import Admins from './pages/Admins';
 import Customers from './pages/Customers';
+import Workouts from './pages/Workouts';
+import Diets from './pages/Diets';
+import FAQ from './pages/FAQ';
+import Transformations from './pages/Transformations';
+import Progress from './pages/Progress';
 import Layout from './components/Layout';
 
 function App() {
@@ -42,6 +47,66 @@ function App() {
           path="/login"
           element={
             isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login setIsAuthenticated={setIsAuthenticated} />
+          }
+        />
+        <Route
+          path="/workouts"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Workouts />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/diets"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Diets />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/faq"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <FAQ />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/transformations"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Transformations />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/progress"
+          element={
+            isAuthenticated ? (
+              <Layout setIsAuthenticated={setIsAuthenticated}>
+                <Progress />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
           }
         />
         <Route

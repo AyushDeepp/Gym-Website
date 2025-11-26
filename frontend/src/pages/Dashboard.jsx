@@ -12,6 +12,10 @@ import {
   FiEdit,
   FiDollarSign,
   FiUserCheck,
+  FiActivity,
+  FiBookOpen,
+  FiBarChart2,
+  FiCamera,
 } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { getPlans, getMembershipStatus } from '../utils/api';
@@ -147,6 +151,32 @@ const Dashboard = () => {
   }
 
   const isMember = user.role === 'member';
+  const actionCards = [
+    {
+      title: 'Workout Library',
+      description: 'Assigned programs & demos',
+      icon: FiActivity,
+      link: '/dashboard/workouts',
+    },
+    {
+      title: 'Nutrition Hub',
+      description: 'Meal plans & macros',
+      icon: FiBookOpen,
+      link: '/dashboard/diet',
+    },
+    {
+      title: 'Progress Tracker',
+      description: 'Log stats & charts',
+      icon: FiBarChart2,
+      link: '/dashboard/progress',
+    },
+    {
+      title: 'Transformation',
+      description: 'Submit spotlight story',
+      icon: FiCamera,
+      link: '/dashboard/transformation-submit',
+    },
+  ];
   const daysUntilExpiry = getDaysUntilExpiry();
   const isExpiringSoon = daysUntilExpiry !== null && daysUntilExpiry <= 7 && daysUntilExpiry > 0;
 
@@ -340,19 +370,20 @@ const Dashboard = () => {
                   <div className="bg-primary-darker p-4 sm:p-6 rounded-lg border border-primary-lightGray">
                     <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">Quick Actions</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      <button
-                        onClick={() => navigate('/timetable')}
-                        className="p-3 sm:p-4 bg-primary-gray rounded-lg border border-primary-lightGray hover:border-primary-red transition-colors text-left"
-                      >
-                        <FiCalendar className="text-xl sm:text-2xl text-primary-red mb-2" />
-                        <p className="text-white text-sm sm:text-base font-semibold">View Timetable</p>
-                        <p className="text-gray-400 text-xs sm:text-sm">Check class schedules</p>
-                      </button>
-                      <div className="p-3 sm:p-4 bg-primary-gray rounded-lg border border-primary-lightGray text-left opacity-50">
-                        <FiUserCheck className="text-xl sm:text-2xl text-primary-red mb-2" />
-                        <p className="text-white text-sm sm:text-base font-semibold">Book Class</p>
-                        <p className="text-gray-400 text-xs sm:text-sm">Coming Soon</p>
-                      </div>
+                      {actionCards.map((action) => {
+                        const Icon = action.icon;
+                        return (
+                          <button
+                            key={action.title}
+                            onClick={() => navigate(action.link)}
+                            className="p-3 sm:p-4 bg-primary-gray rounded-lg border border-primary-lightGray hover:border-primary-red transition-colors text-left"
+                          >
+                            <Icon className="text-xl sm:text-2xl text-primary-red mb-2" />
+                            <p className="text-white text-sm sm:text-base font-semibold">{action.title}</p>
+                            <p className="text-gray-400 text-xs sm:text-sm">{action.description}</p>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

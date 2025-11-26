@@ -16,6 +16,9 @@ import {
   FiUser,
   FiLogOut,
   FiLayout,
+  FiTool,
+  FiHelpCircle,
+  FiStar,
 } from 'react-icons/fi';
 import { FaDumbbell } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
@@ -70,6 +73,8 @@ const Navbar = () => {
     { path: '/programs', label: 'Programs', icon: FaDumbbell },
     { path: '/trainers', label: 'Trainers', icon: FiUsers },
     { path: '/plans', label: 'Plans', icon: FiCreditCard },
+    { path: '/tools', label: 'Tools', icon: FiTool },
+    { path: '/transformations', label: 'Stories', icon: FiStar },
   ];
 
   // All navigation links for sidebar (complete menu)
@@ -82,6 +87,9 @@ const Navbar = () => {
     { path: '/timetable', label: 'Timetable', icon: FiCalendar },
     { path: '/gallery', label: 'Gallery', icon: FiImage },
     { path: '/testimonials', label: 'Testimonials', icon: FiMessageSquare },
+    { path: '/tools', label: 'Tools', icon: FiTool },
+    { path: '/help-center', label: 'Help Center', icon: FiHelpCircle },
+    { path: '/transformations', label: 'Transformations', icon: FiStar },
     { path: '/contact', label: 'Contact', icon: FiMail },
   ];
 

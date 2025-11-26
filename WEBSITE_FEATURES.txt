@@ -1,0 +1,1138 @@
+================================================================================
+                    ELITE GYM WEBSITE - FEATURES & FUNCTIONALITY
+================================================================================
+
+This document provides a comprehensive overview of all features available in the
+Elite Gym website and explains how each feature works.
+
+================================================================================
+                            TABLE OF CONTENTS
+================================================================================
+
+1. OVERVIEW
+2. FRONTEND FEATURES (Customer-Facing)
+3. USER DASHBOARD & MEMBERSHIP FEATURES
+4. ADMIN PANEL FEATURES
+5. BACKEND API FEATURES
+6. PAYMENT SYSTEM
+7. AUTHENTICATION & AUTHORIZATION
+8. TECHNICAL ARCHITECTURE
+
+================================================================================
+                                1. OVERVIEW
+================================================================================
+
+The Elite Gym website is a comprehensive fitness management platform built using
+the MERN stack (MongoDB, Express, React, Node.js). It consists of three main
+components:
+
+- Frontend: Customer-facing website for browsing, registration, and member access
+- Backend: RESTful API server handling all business logic and database operations
+- Admin Panel: Management interface for gym administrators
+
+The website features a modern dark theme with neon red (#FF006E) and blue (#00F5FF)
+accents, smooth animations, and a fully responsive design.
+
+================================================================================
+                    2. FRONTEND FEATURES (Customer-Facing)
+================================================================================
+
+2.1 HOME PAGE
+-------------
+Features:
+- Fullscreen hero section with call-to-action buttons
+- Animated statistics counter displaying:
+  * Active Members count
+  * Expert Trainers count
+  * Weekly Classes count
+  * Years of Experience
+- Programs preview carousel (shows first 3 programs)
+- Trainers showcase section (shows first 3 trainers)
+- Membership plans preview (shows first 3 plans)
+- Customer testimonials section
+- Call-to-action section encouraging membership signup
+
+How it works:
+- Data is fetched from the backend API on page load
+- Statistics use animated counters that increment to target values
+- Programs, trainers, and plans are displayed in responsive grid layouts
+- All sections use Framer Motion for smooth animations
+- Page automatically scrolls to top on navigation
+
+2.2 ABOUT PAGE
+--------------
+Features:
+- Gym story and mission statement
+- Features grid showcasing:
+  * State-of-the-art equipment
+  * Expert trainers
+  * Personalized programs
+  * Flexible timings
+  * Community support
+  * Progress tracking
+
+How it works:
+- Static content with animated reveal effects
+- Feature cards use hover animations
+- Responsive grid layout adapts to screen size
+
+2.3 PROGRAMS PAGE
+-----------------
+Features:
+- Display all available fitness programs
+- Program cards showing:
+  * Program name and description
+  * Duration and difficulty level (Beginner/Intermediate/Advanced)
+  * Features list
+  * Pricing information
+  * Program images
+
+How it works:
+- Fetches all programs from /api/programs endpoint
+- Programs displayed in responsive grid (1-3 columns based on screen size)
+- Each program card is clickable and shows detailed information
+- Loading states displayed while fetching data
+- Error handling for failed API requests
+
+2.4 TRAINERS PAGE
+-----------------
+Features:
+- Display all gym trainers
+- Trainer cards showing:
+  * Trainer name and photo
+  * Specialization and experience
+  * Social media links (Instagram, Facebook, Twitter)
+  * Bio information
+
+How it works:
+- Fetches trainer data from /api/trainers endpoint
+- Trainers displayed in grid layout
+- Social media icons are clickable links
+- Responsive design for mobile and desktop
+
+2.5 PLANS PAGE
+--------------
+Features:
+- Display all membership plans
+- Plan cards showing:
+  * Plan name and price
+  * Features and benefits list
+  * Duration options
+  * Razorpay payment integration button
+
+How it works:
+- Fetches plans from /api/plans endpoint
+- Each plan card has a "Purchase" button
+- Clicking purchase initiates payment flow:
+  1. Creates payment order via /api/payments/create
+  2. Opens Razorpay checkout (or demo mode simulation)
+  3. On success, verifies payment via /api/payments/verify
+  4. Updates user membership status
+- Supports demo mode for testing without Razorpay credentials
+
+2.6 TIMETABLE PAGE
+------------------
+Features:
+- Weekly class schedule display
+- Day selector (Monday through Sunday)
+- Class information showing:
+  * Class name
+  * Trainer name
+  * Time and duration
+  * Capacity information
+
+How it works:
+- Fetches timetable from /api/timetable endpoint
+- Users can filter classes by selecting a day
+- Classes displayed in list format with time slots
+- Shows available spots and trainer assignments
+- Updates dynamically when admin modifies schedule
+
+2.7 GALLERY PAGE
+----------------
+Features:
+- Image gallery grid layout
+- Lightbox functionality for viewing images in full size
+- Responsive image grid
+
+How it works:
+- Images displayed in masonry-style grid
+- Clicking an image opens lightbox modal
+- Navigation between images in lightbox
+- Responsive layout adjusts columns based on screen size
+
+2.8 TESTIMONIALS PAGE
+---------------------
+Features:
+- Display customer testimonials
+- Testimonial cards with:
+  * Customer name and photo
+  * Rating stars (1-5 stars)
+  * Review text
+
+How it works:
+- Testimonials can be static or fetched from API
+- Cards displayed in grid layout
+- Star ratings visually displayed
+- Smooth animations on scroll
+
+2.9 CONTACT PAGE
+----------------
+Features:
+- Contact form with fields:
+  * Name (required)
+  * Email (required)
+  * Phone (optional)
+  * Subject (required)
+  * Message (required)
+- Contact information display:
+  * Gym address
+  * Phone numbers
+  * Email addresses
+  * Operating hours
+
+How it works:
+- Form validation before submission
+- Submits data to /api/contact endpoint
+- Success/error messages displayed after submission
+- Contact submissions stored in database
+- Admin can view and manage submissions in admin panel
+
+2.10 TOOLS PAGE (Health Calculators)
+--------------------------------------
+Features:
+- BMI Calculator:
+  * Height and weight input sliders
+  * Real-time BMI calculation
+  * BMI category display (Underweight/Healthy/Overweight/Obese)
+  * Color-coded status badges
+
+- Body Fat Calculator:
+  * Navy formula body fat estimation
+  * Gender-specific calculations (Male/Female)
+  * Waist, neck, and hip measurements
+  * Body fat percentage display
+  * Fitness range indicators
+
+- TDEE Calculator (Total Daily Energy Expenditure):
+  * Age, height, weight inputs
+  * Activity level selection (Sedentary to Athlete)
+  * Maintenance calories calculation
+  * Cutting and bulking calorie targets
+  * Based on Mifflin-St Jeor equation
+
+- Workout and Diet Plan Previews:
+  * Shows preview of available workout plans
+  * Shows preview of available diet plans
+  * Links to full access for members
+
+How it works:
+- All calculations performed client-side (no data stored)
+- Real-time updates as user adjusts inputs
+- Uses scientific formulas:
+  * BMI = weight (kg) / height (m)²
+  * Body Fat uses Navy formula with logarithmic calculations
+  * TDEE uses Mifflin-St Jeor equation with activity multipliers
+- Fetches workout and diet plan previews from API
+- No authentication required - public access
+
+2.11 HELP CENTER / FAQ PAGE
+---------------------------
+Features:
+- Frequently Asked Questions display
+- Search functionality for questions
+- Categorized FAQ sections
+- Answers to common queries
+
+How it works:
+- Fetches FAQs from /api/faq endpoint
+- Search filters questions in real-time
+- Categories help organize questions
+- Admin can manage FAQs through admin panel
+
+2.12 TRANSFORMATIONS PAGE
+-------------------------
+Features:
+- Gallery of member transformation stories
+- Before/after photos
+- Member testimonials and success stories
+- Submission form for members to share their story
+
+How it works:
+- Fetches approved transformations from /api/transformation endpoint
+- Displays transformation cards with photos and stories
+- Members can submit their own transformations
+- Admin reviews and approves submissions before publishing
+
+2.13 LOGIN PAGE
+---------------
+Features:
+- User authentication form
+- Email and password login
+- Registration option for new users
+- "Remember me" functionality
+- Password reset option (if implemented)
+
+How it works:
+- Submits credentials to /api/users/login endpoint
+- Receives JWT token on successful authentication
+- Token stored in localStorage and cookies
+- Redirects to dashboard or intended page after login
+- Error messages for invalid credentials
+
+================================================================================
+              3. USER DASHBOARD & MEMBERSHIP FEATURES
+================================================================================
+
+3.1 USER DASHBOARD OVERVIEW
+----------------------------
+Features:
+- Personalized welcome message
+- Account status display (Member/Visitor)
+- Membership status and expiry information
+- Quick access cards to:
+  * Workout Library
+  * Nutrition Hub
+  * Progress Tracker
+  * Transformation Submission
+- Membership purchase options (for visitors)
+- Payment history
+- Profile management
+
+How it works:
+- Protected route requiring authentication
+- Fetches user data and membership status on load
+- Displays different content based on user role (member vs visitor)
+- Real-time membership expiry countdown
+- Alerts for expiring memberships (7 days before expiry)
+
+3.2 WORKOUT LIBRARY
+-------------------
+Features:
+- View assigned workout plans
+- Browse all available workout plans
+- Exercise details and instructions
+- Video demonstrations (if available)
+- Progress tracking for workouts
+- Mark workouts as completed
+
+How it works:
+- Fetches workout plans from /api/workouts endpoint
+- Members see assigned plans, visitors see previews
+- Each workout shows:
+  * Exercise name and description
+  * Sets, reps, and weight recommendations
+  * Rest periods
+  * Exercise images or videos
+- Members can log workout completion
+- Progress saved to user profile
+
+3.3 NUTRITION HUB (Diet Plans)
+-------------------------------
+Features:
+- View assigned diet plans
+- Browse all available diet plans
+- Meal plans with recipes
+- Macro and calorie information
+- Daily meal schedules
+- Shopping lists
+
+How it works:
+- Fetches diet plans from /api/diets endpoint
+- Members see full plans, visitors see previews
+- Each diet plan includes:
+  * Meal breakdown (breakfast, lunch, dinner, snacks)
+  * Nutritional information (calories, protein, carbs, fats)
+  * Recipe instructions
+  * Meal timing recommendations
+- Plans can be filtered by goals (weight loss, muscle gain, maintenance)
+
+3.4 PROGRESS TRACKER
+--------------------
+Features:
+- Log body measurements (weight, body fat, measurements)
+- Track progress over time
+- Visual charts and graphs
+- Goal setting
+- Progress photos upload
+- Historical data view
+
+How it works:
+- Users submit progress entries via /api/progress endpoint
+- Each entry includes:
+  * Date
+  * Weight
+  * Body measurements (chest, waist, arms, etc.)
+  * Body fat percentage
+  * Progress photos
+- Data stored in ProgressEntry model
+- Charts generated using progress data
+- Members can view their progress timeline
+- Admin can view all member progress
+
+3.5 TRANSFORMATION SUBMISSION
+------------------------------
+Features:
+- Submit before/after photos
+- Write transformation story
+- Upload multiple photos
+- Status tracking (pending/approved/rejected)
+
+How it works:
+- Members submit transformations via /api/transformation endpoint
+- Form includes:
+  * Before photos
+  * After photos
+  * Story/description
+  * Time period of transformation
+- Submissions saved with "pending" status
+- Admin reviews and approves/rejects submissions
+- Approved transformations appear on public Transformations page
+
+3.6 MEMBERSHIP MANAGEMENT
+-------------------------
+Features:
+- View current membership details
+- Membership expiry date and countdown
+- Renew membership option
+- Upgrade/downgrade plans
+- Payment history
+- Membership status (Active/Expired/Pending)
+
+How it works:
+- Membership data fetched from /api/membership/status endpoint
+- Shows:
+  * Plan name and duration
+  * Start and end dates
+  * Days remaining
+  * Payment history
+- Members can purchase new plans to renew/extend
+- Payment processed through Razorpay
+- Membership status updated automatically after payment
+
+================================================================================
+                        4. ADMIN PANEL FEATURES
+================================================================================
+
+4.1 ADMIN DASHBOARD
+-------------------
+Features:
+- Overview statistics:
+  * Total programs count
+  * Total trainers count
+  * Total plans count
+  * Total contact submissions
+  * Total payments count
+  * Total revenue calculation
+- Clickable stat cards linking to management pages
+- Real-time data updates
+
+How it works:
+- Fetches statistics from various API endpoints
+- Calculates total revenue from completed payments
+- Cards are clickable and navigate to respective management pages
+- Data refreshes on page load
+
+4.2 PROGRAMS MANAGEMENT
+-----------------------
+Features:
+- View all programs in grid layout
+- Create new program with form:
+  * Name, description
+  * Duration, difficulty level
+  * Image URL
+  * Features (comma-separated)
+  * Price
+- Edit existing programs
+- Delete programs with confirmation
+- Modal form for create/edit operations
+
+How it works:
+- CRUD operations via /api/programs endpoints
+- Form validation before submission
+- Image URLs can be uploaded or linked
+- Features stored as array
+- Changes reflected immediately in frontend
+
+4.3 TRAINERS MANAGEMENT
+-----------------------
+Features:
+- View all trainers in grid layout
+- Create new trainer with form
+- Edit existing trainers
+- Delete trainers with confirmation
+- Fields include:
+  * Name, bio, specialization
+  * Experience (years)
+  * Image URL
+  * Social media links
+
+How it works:
+- CRUD operations via /api/trainers endpoints
+- Trainer profiles linked to timetable classes
+- Social media links stored as object
+- Deletion checks for existing class assignments
+
+4.4 PLANS MANAGEMENT
+--------------------
+Features:
+- View all membership plans
+- Create new plan with form
+- Edit existing plans
+- Delete plans with confirmation
+- Plan fields:
+  * Name, description, price
+  * Duration
+  * Features list
+  * Benefits list
+
+How it works:
+- CRUD operations via /api/plans endpoints
+- Price stored in database (used for payments)
+- Features and benefits stored as arrays
+- Plans linked to user memberships
+
+4.5 TIMETABLE MANAGEMENT
+------------------------
+Features:
+- View all timetable entries
+- Create new class schedule entry
+- Edit existing entries
+- Delete entries with confirmation
+- Fields include:
+  * Day of week
+  * Class name
+  * Trainer name
+  * Time and duration
+  * Capacity
+
+How it works:
+- CRUD operations via /api/timetable endpoints
+- Entries organized by day of week
+- Trainer names must match existing trainers
+- Capacity limits can be set for classes
+
+4.6 CONTACTS MANAGEMENT
+-----------------------
+Features:
+- View all contact form submissions
+- View individual contact details
+- Update contact status (New/Read/Replied/Resolved)
+- Display contact information:
+  * Name, email, phone
+  * Subject, message
+  * Submission date/time
+  * Status
+
+How it works:
+- Fetches contacts from /api/contact endpoint (admin only)
+- Status can be updated via PUT /api/contact/:id
+- Contacts sorted by submission date (newest first)
+- Admin can mark as read/replied/resolved
+
+4.7 PAYMENTS MANAGEMENT
+-----------------------
+Features:
+- View all payment transactions
+- Display payment details:
+  * Plan name
+  * Customer information
+  * Amount and status
+  * Order ID and Payment ID
+  * Date and time
+- Total revenue calculation
+- Status color coding (completed/pending/failed)
+- Filter by status
+
+How it works:
+- Fetches payments from /api/payments endpoint (admin only)
+- Revenue calculated from completed payments
+- Payment status tracked:
+  * completed: Successful payment
+  * pending: Payment initiated but not completed
+  * failed: Payment failed or cancelled
+- Payment IDs linked to Razorpay transactions
+
+4.8 CUSTOMERS MANAGEMENT
+-------------------------
+Features:
+- View all registered users
+- View customer details:
+  * Name, email, phone
+  * Registration date
+  * Membership status
+  * Role (member/visitor)
+- Filter by membership status
+- View customer's payment history
+- View customer's progress entries
+
+How it works:
+- Fetches users from /api/admin/customers endpoint
+- Admin can view detailed customer information
+- Links to customer's payments and progress
+- Can update customer details if needed
+
+4.9 WORKOUT PLANS MANAGEMENT
+-----------------------------
+Features:
+- Create and manage workout plans
+- Assign workouts to members
+- Exercise library management
+- Sets, reps, and weight specifications
+
+How it works:
+- CRUD operations via /api/workouts endpoints
+- Workouts can be assigned to specific members
+- Exercise details include instructions and media
+- Members see assigned workouts in their dashboard
+
+4.10 DIET PLANS MANAGEMENT
+---------------------------
+Features:
+- Create and manage diet plans
+- Assign diet plans to members
+- Meal planning and recipe management
+- Nutritional information tracking
+
+How it works:
+- CRUD operations via /api/diets endpoints
+- Diet plans can be assigned to specific members
+- Includes meal breakdowns and nutritional data
+- Members see assigned diets in their dashboard
+
+4.11 PROGRESS MANAGEMENT
+-------------------------
+Features:
+- View all member progress entries
+- Track member progress over time
+- Generate progress reports
+- View progress photos
+
+How it works:
+- Fetches progress entries from /api/progress endpoint (admin only)
+- Can filter by member
+- View historical progress data
+- Progress photos stored and displayed
+
+4.12 TRANSFORMATIONS MANAGEMENT
+--------------------------------
+Features:
+- Review transformation submissions
+- Approve or reject submissions
+- Edit transformation details
+- Manage published transformations
+
+How it works:
+- Fetches transformations from /api/transformation endpoint
+- Admin can change status (pending/approved/rejected)
+- Approved transformations appear on public page
+- Can edit details before publishing
+
+4.13 FAQ MANAGEMENT
+-------------------
+Features:
+- Create and manage FAQ entries
+- Categorize questions
+- Edit and delete FAQs
+- Reorder questions
+
+How it works:
+- CRUD operations via /api/faq endpoints
+- FAQs displayed on Help Center page
+- Categories help organize questions
+- Search functionality uses FAQ data
+
+4.14 ADMINS MANAGEMENT
+----------------------
+Features:
+- View all admin accounts
+- Create new admin (super admin only)
+- Update admin details (super admin only)
+- Delete admin accounts (super admin only)
+- Role-based access control
+
+How it works:
+- Admin operations via /api/admin/auth endpoints
+- Roles: super_admin, admin
+- Super admin has full access
+- Regular admin has limited access
+- Password hashing using bcrypt
+
+================================================================================
+                        5. BACKEND API FEATURES
+================================================================================
+
+5.1 AUTHENTICATION ENDPOINTS
+----------------------------
+Endpoints:
+- POST /api/users/register - User registration
+- POST /api/users/login - User login
+- GET /api/users/me - Get current user profile
+- PUT /api/users/me - Update user profile
+- POST /api/admin/auth/login - Admin login
+- POST /api/admin/auth/register - Admin registration (super admin only)
+
+How it works:
+- JWT tokens generated on successful login
+- Tokens stored in HTTP-only cookies and localStorage
+- Token expiration handled automatically
+- Password hashing using bcrypt
+- Role-based access control middleware
+
+5.2 PROGRAMS API
+----------------
+Endpoints:
+- GET /api/programs - Get all programs
+- GET /api/programs/:id - Get single program
+- POST /api/programs - Create program (admin)
+- PUT /api/programs/:id - Update program (admin)
+- DELETE /api/programs/:id - Delete program (admin)
+
+How it works:
+- MongoDB stores program data
+- Mongoose models handle data validation
+- Admin authentication required for write operations
+- Public access for read operations
+
+5.3 TRAINERS API
+----------------
+Endpoints:
+- GET /api/trainers - Get all trainers
+- GET /api/trainers/:id - Get single trainer
+- POST /api/trainers - Create trainer (admin)
+- PUT /api/trainers/:id - Update trainer (admin)
+- DELETE /api/trainers/:id - Delete trainer (admin)
+
+How it works:
+- Trainer data stored in MongoDB
+- Social media links stored as nested objects
+- Images can be URLs or file paths
+- Linked to timetable entries
+
+5.4 PLANS API
+-------------
+Endpoints:
+- GET /api/plans - Get all plans
+- GET /api/plans/:id - Get single plan
+- POST /api/plans - Create plan (admin)
+- PUT /api/plans/:id - Update plan (admin)
+- DELETE /api/plans/:id - Delete plan (admin)
+
+How it works:
+- Plans stored with pricing information
+- Features and benefits as arrays
+- Used for membership purchases
+- Linked to user memberships
+
+5.5 TIMETABLE API
+-----------------
+Endpoints:
+- GET /api/timetable - Get all timetable entries
+- GET /api/timetable/day/:day - Get timetable by day
+- POST /api/timetable - Create entry (admin)
+- PUT /api/timetable/:id - Update entry (admin)
+- DELETE /api/timetable/:id - Delete entry (admin)
+
+How it works:
+- Entries organized by day of week
+- Time slots stored as strings
+- Capacity limits enforced
+- Trainer names validated against trainers collection
+
+5.6 CONTACT API
+---------------
+Endpoints:
+- POST /api/contact - Submit contact form (public)
+- GET /api/contact - Get all contacts (admin)
+- GET /api/contact/:id - Get single contact (admin)
+- PUT /api/contact/:id - Update contact status (admin)
+
+How it works:
+- Public endpoint for form submissions
+- Admin endpoints require authentication
+- Status tracking (new/read/replied/resolved)
+- Email notifications can be added
+
+5.7 PAYMENT API
+---------------
+Endpoints:
+- POST /api/payments/create - Create Razorpay order
+- POST /api/payments/verify - Verify payment
+- GET /api/payments/:id - Get payment details
+- GET /api/payments - Get all payments (admin)
+
+How it works:
+- Creates Razorpay order with plan details
+- Returns order ID to frontend
+- Frontend opens Razorpay checkout
+- Payment verification on success
+- Payment data stored in database
+- Demo mode available for testing
+
+5.8 MEMBERSHIP API
+------------------
+Endpoints:
+- GET /api/membership/status/:userId - Get membership status
+- POST /api/membership/activate - Activate membership after payment
+
+How it works:
+- Checks user's active membership
+- Returns membership details and expiry
+- Activates membership after successful payment
+- Tracks membership history
+
+5.9 WORKOUT API
+---------------
+Endpoints:
+- GET /api/workouts - Get all workouts
+- GET /api/workouts/:id - Get single workout
+- POST /api/workouts - Create workout (admin)
+- PUT /api/workouts/:id - Update workout (admin)
+- DELETE /api/workouts/:id - Delete workout (admin)
+- GET /api/workouts/user/:userId - Get user's assigned workouts
+
+How it works:
+- Workout plans stored with exercise details
+- Can be assigned to specific members
+- Exercise data includes sets, reps, weight
+- Members see assigned workouts in dashboard
+
+5.10 DIET API
+-------------
+Endpoints:
+- GET /api/diets - Get all diet plans
+- GET /api/diets/:id - Get single diet plan
+- POST /api/diets - Create diet plan (admin)
+- PUT /api/diets/:id - Update diet plan (admin)
+- DELETE /api/diets/:id - Delete diet plan (admin)
+- GET /api/diets/user/:userId - Get user's assigned diet
+
+How it works:
+- Diet plans stored with meal information
+- Nutritional data (calories, macros) included
+- Can be assigned to specific members
+- Members see assigned diets in dashboard
+
+5.11 PROGRESS API
+-----------------
+Endpoints:
+- POST /api/progress - Create progress entry (member)
+- GET /api/progress/user/:userId - Get user's progress
+- GET /api/progress - Get all progress (admin)
+- PUT /api/progress/:id - Update progress entry
+- DELETE /api/progress/:id - Delete progress entry
+
+How it works:
+- Members can log their progress
+- Stores measurements, weight, body fat
+- Progress photos can be uploaded
+- Historical data for charts
+- Admin can view all member progress
+
+5.12 TRANSFORMATION API
+------------------------
+Endpoints:
+- POST /api/transformation - Submit transformation (member)
+- GET /api/transformation - Get all transformations
+- GET /api/transformation/:id - Get single transformation
+- PUT /api/transformation/:id - Update transformation (admin)
+- DELETE /api/transformation/:id - Delete transformation (admin)
+
+How it works:
+- Members submit transformations
+- Status: pending/approved/rejected
+- Admin reviews and approves
+- Approved transformations appear publicly
+- Photos stored and displayed
+
+5.13 FAQ API
+------------
+Endpoints:
+- GET /api/faq - Get all FAQs
+- POST /api/faq - Create FAQ (admin)
+- PUT /api/faq/:id - Update FAQ (admin)
+- DELETE /api/faq/:id - Delete FAQ (admin)
+
+How it works:
+- FAQs stored with categories
+- Search functionality uses FAQ data
+- Displayed on Help Center page
+- Admin manages all FAQs
+
+================================================================================
+                          6. PAYMENT SYSTEM
+================================================================================
+
+6.1 RAZORPAY INTEGRATION
+------------------------
+Features:
+- Secure payment processing
+- Multiple payment methods (cards, UPI, netbanking, wallets)
+- Payment verification
+- Order management
+- Demo mode for testing
+
+How it works:
+1. User selects a membership plan
+2. Frontend calls /api/payments/create with plan details
+3. Backend creates Razorpay order:
+   - Calculates amount from plan price
+   - Creates order via Razorpay API
+   - Returns order ID to frontend
+4. Frontend opens Razorpay checkout popup
+5. User completes payment
+6. Razorpay returns payment details
+7. Frontend calls /api/payments/verify with payment details
+8. Backend verifies payment signature
+9. Payment saved to database
+10. User membership activated automatically
+
+6.2 DEMO MODE
+-------------
+Features:
+- Test payments without Razorpay credentials
+- Simulates payment flow
+- Saves payment data to database
+- No actual money transaction
+
+How it works:
+- Set DEMO_MODE=true in backend .env
+- Set VITE_DEMO_MODE=true in frontend .env
+- Payment flow simulates Razorpay checkout
+- Payment automatically verified
+- Useful for development and testing
+
+6.3 PAYMENT VERIFICATION
+------------------------
+How it works:
+- Razorpay provides payment signature
+- Backend verifies signature using Razorpay secret key
+- Signature verification ensures payment authenticity
+- Only verified payments activate membership
+- Failed verifications marked as failed
+
+================================================================================
+                 7. AUTHENTICATION & AUTHORIZATION
+================================================================================
+
+7.1 USER AUTHENTICATION
+-----------------------
+Features:
+- User registration with email and password
+- Login with credentials
+- JWT token-based authentication
+- Password hashing with bcrypt
+- Session persistence
+- Protected routes
+
+How it works:
+- Registration: User provides email, password, name
+- Password hashed using bcrypt before storage
+- Login: Credentials verified against database
+- JWT token generated on successful login
+- Token stored in HTTP-only cookie and localStorage
+- Token included in API requests via Authorization header
+- Token expiration: 7 days (configurable)
+- Protected routes check for valid token
+
+7.2 ADMIN AUTHENTICATION
+------------------------
+Features:
+- Separate admin login system
+- Super admin and regular admin roles
+- Role-based access control
+- Admin registration (super admin only)
+
+How it works:
+- Admin login via /api/admin/auth/login
+- Separate Admin model in database
+- Super admin can create other admins
+- Roles determine access level:
+  * super_admin: Full access to all features
+  * admin: Limited access (cannot manage other admins)
+- JWT tokens for admin sessions
+- Admin panel uses separate authentication
+
+7.3 ROLE-BASED ACCESS CONTROL
+------------------------------
+Roles:
+- visitor: Unregistered user, limited access
+- member: Registered user with active membership
+- admin: Gym staff with management access
+- super_admin: Full system access
+
+How it works:
+- User roles stored in database
+- Middleware checks role before allowing access
+- Protected routes specify allowed roles
+- Frontend shows/hides features based on role
+- API endpoints verify role before processing requests
+
+7.4 PROTECTED ROUTES
+--------------------
+Features:
+- Route protection based on authentication
+- Role-based route access
+- Automatic redirect to login
+- Session validation
+
+How it works:
+- ProtectedRoute component wraps protected pages
+- Checks authentication status
+- Verifies user role matches required roles
+- Redirects to login if not authenticated
+- Preserves intended destination for redirect after login
+
+================================================================================
+                      8. TECHNICAL ARCHITECTURE
+================================================================================
+
+8.1 FRONTEND ARCHITECTURE
+-------------------------
+Technology Stack:
+- React 18 with Vite
+- React Router for navigation
+- Framer Motion for animations
+- Tailwind CSS for styling
+- Axios for API calls
+- Context API for state management
+
+Key Components:
+- Navbar: Navigation with mobile menu
+- Footer: Site footer with links
+- ProtectedRoute: Route protection wrapper
+- PageTransition: Smooth page transitions
+- ScrollToTop: Auto-scroll on navigation
+
+State Management:
+- AuthContext: User authentication state
+- Local state for component data
+- API calls for data fetching
+
+8.2 BACKEND ARCHITECTURE
+------------------------
+Technology Stack:
+- Node.js with Express
+- MongoDB with Mongoose
+- JWT for authentication
+- Bcrypt for password hashing
+- Razorpay SDK for payments
+- CORS for cross-origin requests
+
+Project Structure:
+- controllers/: Business logic
+- models/: Database schemas
+- routes/: API endpoints
+- middleware/: Authentication, error handling
+- config/: Database and service configurations
+
+Database Models:
+- User: Customer accounts
+- Admin: Admin accounts
+- Program: Fitness programs
+- Trainer: Trainer profiles
+- Plan: Membership plans
+- Timetable: Class schedules
+- Contact: Contact form submissions
+- Payment: Payment transactions
+- WorkoutPlan: Workout programs
+- DietPlan: Diet plans
+- ProgressEntry: Member progress logs
+- Transformation: Transformation submissions
+- FAQ: Frequently asked questions
+
+8.3 ADMIN PANEL ARCHITECTURE
+----------------------------
+Technology Stack:
+- React 18 with Vite
+- React Router
+- Tailwind CSS
+- Axios for API calls
+
+Features:
+- Separate application from frontend
+- Admin-specific authentication
+- Management interfaces for all resources
+- Real-time data updates
+- Responsive design
+
+8.4 DATABASE STRUCTURE
+----------------------
+Database: MongoDB
+
+Collections:
+- users: Customer accounts and profiles
+- admins: Admin accounts
+- programs: Fitness programs
+- trainers: Trainer information
+- plans: Membership plans
+- timetables: Class schedules
+- contacts: Contact form submissions
+- payments: Payment transactions
+- workoutplans: Workout programs
+- dietplans: Diet plans
+- progressentries: Member progress logs
+- transformations: Transformation submissions
+- faqs: FAQ entries
+
+Relationships:
+- Users linked to payments and memberships
+- Workouts and diets assigned to users
+- Progress entries linked to users
+- Transformations linked to users
+- Timetable entries linked to trainers
+
+8.5 SECURITY FEATURES
+---------------------
+- Password hashing with bcrypt
+- JWT token authentication
+- HTTP-only cookies for tokens
+- CORS configuration
+- Input validation
+- SQL injection prevention (MongoDB)
+- XSS protection
+- Role-based access control
+- Payment signature verification
+
+8.6 ERROR HANDLING
+------------------
+- Centralized error handler middleware
+- Try-catch blocks in controllers
+- API error responses with status codes
+- Frontend error display
+- Logging for debugging
+- User-friendly error messages
+
+8.7 RESPONSIVE DESIGN
+---------------------
+- Mobile-first approach
+- Breakpoints: sm, md, lg, xl
+- Flexible grid layouts
+- Responsive typography
+- Touch-friendly buttons
+- Mobile navigation menu
+- Adaptive images
+
+================================================================================
+                              CONCLUSION
+================================================================================
+
+The Elite Gym website is a comprehensive fitness management platform offering:
+
+- Public-facing website for browsing and information
+- User registration and membership management
+- Secure payment processing
+- Member dashboard with workout, diet, and progress tracking
+- Admin panel for complete gym management
+- Health calculators and tools
+- Responsive design for all devices
+- Modern UI with smooth animations
+
+The system is built with scalability in mind and can easily accommodate future
+features such as class booking, trainer scheduling, mobile app integration, and
+more advanced analytics.
+
+================================================================================
+                           END OF DOCUMENT
+================================================================================
+

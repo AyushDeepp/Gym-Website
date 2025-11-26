@@ -16,6 +16,11 @@ import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import memberRoutes from './routes/memberRoutes.js';
 import customerRoutes from './routes/admin/customerRoutes.js';
+import faqRoutes from './routes/faqRoutes.js';
+import workoutRoutes from './routes/workoutRoutes.js';
+import dietRoutes from './routes/dietRoutes.js';
+import progressRoutes from './routes/progressRoutes.js';
+import transformationRoutes from './routes/transformationRoutes.js';
 
 dotenv.config();
 
@@ -64,6 +69,11 @@ app.use('/api/admin/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/membership', memberRoutes);
 app.use('/api/admin/customers', customerRoutes);
+app.use('/api/faq', faqRoutes);
+app.use('/api/workouts', workoutRoutes);
+app.use('/api/diets', dietRoutes);
+app.use('/api/progress', progressRoutes);
+app.use('/api/transformation', transformationRoutes);
 
 // Health Check
 app.get('/api/health', (req, res) => {
