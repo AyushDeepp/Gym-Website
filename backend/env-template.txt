@@ -7,3 +7,4 @@ DEMO_MODE=true
 JWT_SECRET=your-super-secret-jwt-key-change-in-production
 FRONTEND_URL=http://localhost:5173
 ADMIN_URL=http://localhost:5174
+ALLOWED_ORIGINS=
