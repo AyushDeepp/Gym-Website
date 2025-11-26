@@ -1,0 +1,9 @@
+PORT=9000
+MONGODB_URI=mongodb://localhost:27017/gym-website
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+NODE_ENV=development
+DEMO_MODE=true
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+FRONTEND_URL=http://localhost:5173
+ADMIN_URL=http://localhost:5174
