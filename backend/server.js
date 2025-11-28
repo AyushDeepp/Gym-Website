@@ -22,6 +22,7 @@ import dietRoutes from './routes/dietRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import transformationRoutes from './routes/transformationRoutes.js';
 import attendanceRoutes from './routes/attendanceRoutes.js';
+import exerciseRoutes from './routes/exerciseRoutes.js';
 
 dotenv.config();
 
@@ -76,6 +77,7 @@ app.use('/api/diets', dietRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/transformation', transformationRoutes);
 app.use('/api/attendance', attendanceRoutes);
+app.use('/api/exercises', exerciseRoutes);
 
 // Health Check
 app.get('/api/health', (req, res) => {

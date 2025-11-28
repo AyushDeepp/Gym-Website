@@ -334,3 +334,4 @@ This document lists all the functionalities implemented in the Elite Gym website
 - Separate admin and frontend applications
 
 
+

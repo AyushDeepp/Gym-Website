@@ -25,6 +25,8 @@ import DashboardProgress from "./pages/DashboardProgress";
 import DashboardAttendance from "./pages/DashboardAttendance";
 import TransformationSubmit from "./pages/TransformationSubmit";
 import Transformations from "./pages/Transformations";
+import Exercises from "./pages/Exercises";
+import ExerciseDetail from "./pages/ExerciseDetail";
 
 function App() {
   // Prevent scroll restoration on page load
@@ -77,6 +79,22 @@ function App() {
               element={
                 <PageTransition>
                   <Tools />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/exercises"
+              element={
+                <PageTransition>
+                  <Exercises />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/exercises/:id"
+              element={
+                <PageTransition>
+                  <ExerciseDetail />
                 </PageTransition>
               }
             />

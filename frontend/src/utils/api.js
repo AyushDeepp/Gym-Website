@@ -110,5 +110,10 @@ export const checkOut = () => api.post('/attendance/checkout');
 export const getTodayAttendance = () => api.get('/attendance/today');
 export const getUserAttendance = (userId, params) => api.get(`/attendance/user/${userId}`, { params });
 
+// Exercises
+export const getExercises = (params) => api.get('/exercises', { params });
+export const getExercise = (id) => api.get(`/exercises/${id}`);
+export const getExerciseCategories = () => api.get('/exercises/categories');
+
 export default api;
 
