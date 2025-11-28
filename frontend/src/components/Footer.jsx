@@ -10,7 +10,7 @@ const Footer = () => {
       { path: '/', label: 'Home' },
       { path: '/about', label: 'About' },
       { path: '/programs', label: 'Programs' },
-      { path: '/trainers', label: 'Trainers' },
+      { path: '/exercises', label: 'Exercises' },
       { path: '/plans', label: 'Membership Plans' },
       { path: '/tools', label: 'BMI & Tools' },
     ],

@@ -19,6 +19,7 @@ import {
   FiTool,
   FiHelpCircle,
   FiStar,
+  FiActivity,
 } from 'react-icons/fi';
 import { FaDumbbell } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
@@ -71,7 +72,7 @@ const Navbar = () => {
   const headerLinks = [
     { path: '/', label: 'Home', icon: FiHome },
     { path: '/programs', label: 'Programs', icon: FaDumbbell },
-    { path: '/trainers', label: 'Trainers', icon: FiUsers },
+    { path: '/exercises', label: 'Exercises', icon: FiActivity },
     { path: '/plans', label: 'Plans', icon: FiCreditCard },
     { path: '/tools', label: 'Tools', icon: FiTool },
     { path: '/transformations', label: 'Stories', icon: FiStar },
@@ -82,7 +83,7 @@ const Navbar = () => {
     { path: '/', label: 'Home', icon: FiHome },
     { path: '/about', label: 'About', icon: FiInfo },
     { path: '/programs', label: 'Programs', icon: FaDumbbell },
-    { path: '/trainers', label: 'Trainers', icon: FiUsers },
+    { path: '/exercises', label: 'Exercises', icon: FiActivity },
     { path: '/plans', label: 'Plans', icon: FiCreditCard },
     { path: '/timetable', label: 'Timetable', icon: FiCalendar },
     { path: '/gallery', label: 'Gallery', icon: FiImage },
