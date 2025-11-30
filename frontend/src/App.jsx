@@ -183,9 +183,7 @@ function App() {
             <Route
               path="/dashboard/workouts"
               element={
-                <ProtectedRoute
-                  allowedRoles={["member", "admin", "super_admin"]}
-                >
+                <ProtectedRoute>
                   <PageTransition>
                     <DashboardWorkouts />
                   </PageTransition>
@@ -195,9 +193,7 @@ function App() {
             <Route
               path="/dashboard/diet"
               element={
-                <ProtectedRoute
-                  allowedRoles={["member", "admin", "super_admin"]}
-                >
+                <ProtectedRoute>
                   <PageTransition>
                     <DashboardDiet />
                   </PageTransition>
@@ -207,9 +203,7 @@ function App() {
             <Route
               path="/dashboard/progress"
               element={
-                <ProtectedRoute
-                  allowedRoles={["member", "admin", "super_admin"]}
-                >
+                <ProtectedRoute>
                   <PageTransition>
                     <DashboardProgress />
                   </PageTransition>

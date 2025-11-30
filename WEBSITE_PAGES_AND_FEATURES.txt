@@ -1,0 +1,482 @@
+================================================================================
+                    ELITE GYM WEBSITE - PAGES & FEATURES LIST
+================================================================================
+
+This document provides a complete list of all pages and their features in the
+Elite Gym website.
+
+================================================================================
+                            FRONTEND PAGES (Public)
+================================================================================
+
+1. HOME PAGE (/)
+   Features:
+   - Fullscreen hero section with video background
+   - Animated call-to-action buttons (Get Started, Learn More)
+   - Statistics counter section with animated numbers:
+     * 5000+ Active Members
+     * 50+ Expert Trainers
+     * 100+ Classes Weekly
+     * 15+ Years Experience
+   - Programs preview section (shows first 3 programs)
+   - Expert Trainers showcase (shows first 3 trainers)
+   - Membership Plans preview (shows first 3 plans)
+   - Customer Testimonials section (3 testimonials)
+   - Call-to-action section with gradient background
+   - Scroll indicator animation
+   - Smooth page transitions and animations
+
+2. ABOUT PAGE (/about)
+   Features:
+   - Hero section with gym story introduction
+   - Mission and Vision sections (side by side)
+   - "Why Choose Us" features grid:
+     * State-of-the-Art Equipment
+     * Expert Trainers
+     * Personalized Programs
+     * Flexible Timings
+     * Community Support
+     * Progress Tracking
+   - Our Story section with detailed narrative
+   - Animated feature cards with hover effects
+
+3. PROGRAMS PAGE (/programs)
+   Features:
+   - Display all available fitness programs
+   - Program cards showing:
+     * Program name and description
+     * Duration and difficulty level
+     * Features list
+     * Pricing information
+     * Program images
+   - Responsive grid layout (1-3 columns)
+   - Loading states
+   - Error handling
+   - "What's Included in All Plans" information section
+
+4. TRAINERS PAGE (/trainers)
+   Features:
+   - Display all gym trainers
+   - Trainer cards showing:
+     * Trainer name and photo
+     * Specialization and experience
+     * Social media links (Instagram, Facebook, Twitter)
+     * Bio information
+   - Responsive grid layout
+   - Social media icons (clickable links)
+
+5. PLANS PAGE (/plans)
+   Features:
+   - Display all membership plans
+   - Plan cards showing:
+     * Plan name and price
+     * Features and benefits list
+     * Duration options
+     * Razorpay payment integration button
+   - Payment flow integration
+   - Demo mode support
+   - "What's Included in All Plans" section
+
+6. TIMETABLE PAGE (/timetable)
+   Features:
+   - Weekly class schedule display
+   - Day selector (Monday through Sunday)
+   - Class information showing:
+     * Class name
+     * Trainer name
+     * Time and duration
+     * Capacity information
+   - Filter classes by day
+   - Responsive layout
+
+7. GALLERY PAGE (/gallery)
+   Features:
+   - Image gallery grid layout
+   - Lightbox functionality for viewing images in full size
+   - Responsive image grid
+   - Navigation between images in lightbox
+
+8. TESTIMONIALS PAGE (/testimonials)
+   Features:
+   - Display customer testimonials
+   - Testimonial cards with:
+     * Customer name and photo
+     * Rating stars (1-5 stars)
+     * Review text
+   - Grid layout
+   - Smooth animations on scroll
+
+9. TRANSFORMATIONS PAGE (/transformations)
+   Features:
+   - Gallery of member transformation stories
+   - Before/after photos
+   - Member testimonials and success stories
+   - Transformation cards with images and stories
+   - Approved transformations only (admin-reviewed)
+
+10. CONTACT PAGE (/contact)
+    Features:
+    - Contact form with fields:
+      * Name (required)
+      * Email (required)
+      * Phone (optional)
+      * Subject (required)
+      * Message (required)
+    - Contact information display:
+      * Gym address
+      * Phone numbers
+      * Email addresses
+      * Operating hours
+    - Form validation
+    - Success/error messages
+    - Contact submissions stored in database
+
+11. TOOLS PAGE (/tools)
+    Features:
+    - BMI Calculator:
+      * Height and weight input sliders
+      * Real-time BMI calculation
+      * BMI category display (Underweight/Healthy/Overweight/Obese)
+      * Color-coded status badges
+    - Body Fat Calculator:
+      * Navy formula body fat estimation
+      * Gender-specific calculations (Male/Female)
+      * Waist, neck, and hip measurements
+      * Body fat percentage display
+      * Fitness range indicators
+    - TDEE Calculator (Total Daily Energy Expenditure):
+      * Age, height, weight inputs
+      * Activity level selection (Sedentary to Athlete)
+      * Maintenance calories calculation
+      * Cutting and bulking calorie targets
+      * Based on Mifflin-St Jeor equation
+    - Workout and Diet Plan Previews:
+      * Shows preview of available workout plans
+      * Shows preview of available diet plans
+      * Links to full access for members
+    - Book Assessment call-to-action
+
+12. EXERCISES PAGE (/exercises)
+    Features:
+    - Comprehensive exercise library
+    - Search functionality by exercise name
+    - Advanced filtering system:
+      * Muscle Group (Chest, Back, Shoulders, Arms, Legs, Core)
+      * Sub-Muscles (within each muscle group)
+      * Equipment type
+      * Difficulty level (Beginner, Intermediate, Advanced)
+      * Exercise Goal
+      * Movement Pattern (Push, Pull, Squat, Hinge, etc.)
+      * Exercise Type
+    - Exercise cards showing:
+      * Exercise name and image
+      * Description
+      * Difficulty badge
+      * Muscle group tags
+      * Movement type tags
+      * Equipment requirements
+    - Filter panel (collapsible)
+    - Active filters display
+    - Clear all filters button
+    - Responsive grid layout
+
+13. EXERCISE DETAIL PAGE (/exercises/:id)
+    Features:
+    - Detailed exercise information
+    - Exercise images/videos
+    - Instructions and form tips
+    - Muscle groups targeted
+    - Equipment needed
+    - Difficulty level
+    - Related exercises
+
+14. HELP CENTER PAGE (/help-center)
+    Features:
+    - Frequently Asked Questions display
+    - Search functionality for questions
+    - Categorized FAQ sections
+    - Answers to common queries
+    - Real-time search filtering
+
+15. LOGIN PAGE (/login)
+    Features:
+    - User authentication form
+    - Email and password login
+    - Registration option for new users
+    - "Remember me" functionality
+    - Error messages for invalid credentials
+    - Redirect to dashboard after login
+
+================================================================================
+                    USER DASHBOARD PAGES (Protected)
+================================================================================
+
+16. DASHBOARD OVERVIEW (/dashboard)
+    Features:
+    - Personalized welcome message
+    - Account status display (Member/Visitor)
+    - Membership status and expiry information
+    - Quick stats cards:
+      * Account Status
+      * Membership Plan
+      * Days Remaining
+    - Tabbed interface:
+      * Overview tab
+      * Membership tab
+      * Profile tab
+    - Quick Actions cards:
+      * Check-In (Attendance)
+      * Workout Library
+      * Nutrition Hub
+      * Progress Tracker
+      * Transformation Submission
+    - Membership purchase options (for visitors)
+    - Membership details display (for members)
+    - Membership expiry countdown
+    - Renewal alerts (7 days before expiry)
+    - Profile information display
+    - Payment integration for plan purchases
+
+17. DASHBOARD WORKOUTS (/dashboard/workouts)
+    Features:
+    - View assigned workout plans
+    - Browse all available workout plans
+    - Create custom workout plans
+    - Edit user-created workout plans
+    - Delete user-created workout plans
+    - Add exercises to custom plans
+    - Exercise details and instructions
+    - Video demonstrations (if available)
+    - Progress tracking for workouts
+    - Mark workouts as completed
+    - Filter workouts by:
+      * Assigned vs All
+      * User-created vs System plans
+    - Search functionality
+    - Exercise library integration
+    - Workout plan sharing
+
+18. DASHBOARD DIET (/dashboard/diet)
+    Features:
+    - View assigned diet plans
+    - Browse all available diet plans
+    - Meal plans with recipes
+    - Macro and calorie information
+    - Daily meal schedules
+    - Shopping lists
+    - Filter by goals (weight loss, muscle gain, maintenance)
+    - Nutritional breakdown display
+
+19. DASHBOARD PROGRESS (/dashboard/progress)
+    Features:
+    - Log body measurements (weight, body fat, measurements)
+    - Track progress over time
+    - Visual charts and graphs
+    - Goal setting
+    - Progress photos upload
+    - Historical data view
+    - Date-based progress entries
+    - Measurement tracking (chest, waist, arms, etc.)
+
+20. DASHBOARD ATTENDANCE (/dashboard/attendance)
+    Features:
+    - Check-in functionality
+    - Attendance history
+    - Attendance statistics
+    - Date-based attendance tracking
+    - Attendance calendar view
+
+21. TRANSFORMATION SUBMIT (/dashboard/transformation-submit)
+    Features:
+    - Submit before/after photos
+    - Write transformation story
+    - Upload multiple photos
+    - Status tracking (pending/approved/rejected)
+    - Time period of transformation
+    - Form validation
+
+================================================================================
+                         ADMIN PANEL PAGES
+================================================================================
+
+22. ADMIN LOGIN (/admin/login)
+    Features:
+    - Admin authentication form
+    - Separate admin login system
+    - Role-based access (super_admin, admin)
+
+23. ADMIN DASHBOARD (/admin/dashboard)
+    Features:
+    - Overview statistics:
+      * Total programs count
+      * Total trainers count
+      * Total plans count
+      * Total contact submissions
+      * Total payments count
+      * Total revenue calculation
+    - Clickable stat cards linking to management pages
+    - Real-time data updates
+
+24. ADMIN PROGRAMS (/admin/programs)
+    Features:
+    - View all programs in grid layout
+    - Create new program
+    - Edit existing programs
+    - Delete programs with confirmation
+    - Modal form for create/edit operations
+
+25. ADMIN TRAINERS (/admin/trainers)
+    Features:
+    - View all trainers in grid layout
+    - Create new trainer
+    - Edit existing trainers
+    - Delete trainers with confirmation
+    - Social media links management
+
+26. ADMIN PLANS (/admin/plans)
+    Features:
+    - View all membership plans
+    - Create new plan
+    - Edit existing plans
+    - Delete plans with confirmation
+
+27. ADMIN TIMETABLE (/admin/timetable)
+    Features:
+    - View all timetable entries
+    - Create new class schedule entry
+    - Edit existing entries
+    - Delete entries with confirmation
+
+28. ADMIN CONTACTS (/admin/contacts)
+    Features:
+    - View all contact form submissions
+    - View individual contact details
+    - Update contact status (New/Read/Replied/Resolved)
+    - Display contact information
+
+29. ADMIN PAYMENTS (/admin/payments)
+    Features:
+    - View all payment transactions
+    - Display payment details
+    - Total revenue calculation
+    - Status color coding (completed/pending/failed)
+    - Filter by status
+
+30. ADMIN CUSTOMERS (/admin/customers)
+    Features:
+    - View all registered users
+    - View customer details
+    - Filter by membership status
+    - View customer's payment history
+    - View customer's progress entries
+
+31. ADMIN WORKOUTS (/admin/workouts)
+    Features:
+    - Create and manage workout plans
+    - Assign workouts to members
+    - Exercise library management
+    - Sets, reps, and weight specifications
+
+32. ADMIN DIETS (/admin/diets)
+    Features:
+    - Create and manage diet plans
+    - Assign diet plans to members
+    - Meal planning and recipe management
+    - Nutritional information tracking
+
+33. ADMIN PROGRESS (/admin/progress)
+    Features:
+    - View all member progress entries
+    - Track member progress over time
+    - Generate progress reports
+    - View progress photos
+
+34. ADMIN TRANSFORMATIONS (/admin/transformations)
+    Features:
+    - Review transformation submissions
+    - Approve or reject submissions
+    - Edit transformation details
+    - Manage published transformations
+
+35. ADMIN FAQ (/admin/faq)
+    Features:
+    - Create and manage FAQ entries
+    - Categorize questions
+    - Edit and delete FAQs
+    - Reorder questions
+
+36. ADMIN ADMINS (/admin/admins)
+    Features:
+    - View all admin accounts
+    - Create new admin (super admin only)
+    - Update admin details (super admin only)
+    - Delete admin accounts (super admin only)
+    - Role-based access control
+
+37. ADMIN ATTENDANCE (/admin/attendance)
+    Features:
+    - View all member attendance records
+    - Attendance statistics
+    - Filter by member or date
+
+================================================================================
+                            KEY FEATURES SUMMARY
+================================================================================
+
+AUTHENTICATION & AUTHORIZATION:
+- User registration and login
+- Admin login (separate system)
+- JWT token-based authentication
+- Role-based access control (visitor, member, admin, super_admin)
+- Protected routes
+- Session persistence
+
+PAYMENT SYSTEM:
+- Razorpay integration
+- Secure payment processing
+- Multiple payment methods
+- Payment verification
+- Demo mode for testing
+- Automatic membership activation
+
+MEMBER FEATURES:
+- Workout library with assigned plans
+- Custom workout plan creation
+- Diet plans and nutrition hub
+- Progress tracking with charts
+- Attendance check-in
+- Transformation submissions
+- Exercise library with advanced filtering
+
+ADMIN FEATURES:
+- Complete CRUD operations for all resources
+- Customer management
+- Payment management
+- Content management (programs, trainers, plans)
+- Schedule management (timetable)
+- Progress monitoring
+- Transformation approval system
+
+PUBLIC FEATURES:
+- Health calculators (BMI, Body Fat, TDEE)
+- Exercise library with search and filters
+- Class timetable viewing
+- Gallery and testimonials
+- Contact form
+- Help center/FAQ
+- Program and trainer browsing
+
+TECHNICAL FEATURES:
+- Responsive design (mobile-first)
+- Smooth animations (Framer Motion)
+- Page transitions
+- Auto-scroll to top
+- Loading states
+- Error handling
+- Real-time data updates
+- Search and filter functionality
+
+================================================================================
+                           END OF DOCUMENT
+================================================================================
+

@@ -97,6 +97,7 @@ export const getDietPlans = (params) => api.get('/diets', { params });
 // Progress
 export const createProgressEntry = (data) => api.post('/progress', data);
 export const getProgressEntries = (userId) => api.get(`/progress/${userId}`);
+export const updateProgressEntry = (entryId, data) => api.put(`/progress/${entryId}`, data);
 export const deleteProgressEntry = (entryId) => api.delete(`/progress/${entryId}`);
 
 // Transformations
@@ -114,6 +115,21 @@ export const getUserAttendance = (userId, params) => api.get(`/attendance/user/$
 export const getExercises = (params) => api.get('/exercises', { params });
 export const getExercise = (id) => api.get(`/exercises/${id}`);
 export const getExerciseCategories = () => api.get('/exercises/categories');
+
+// User Workout Plans
+export const getUserWorkoutPlans = (userId) => api.get(`/user-workouts/user/${userId}`);
+export const getUserWorkoutPlan = (id) => api.get(`/user-workouts/${id}`);
+export const createUserWorkoutPlan = (data) => api.post('/user-workouts', data);
+export const updateUserWorkoutPlan = (id, data) => api.put(`/user-workouts/${id}`, data);
+export const deleteUserWorkoutPlan = (id) => api.delete(`/user-workouts/${id}`);
+export const addExerciseToUserPlan = (planId, exercise) => api.post(`/user-workouts/${planId}/exercises`, { exercise });
+
+// User Diet Plans
+export const getUserDietPlans = (userId) => api.get(`/user-diets/user/${userId}`);
+export const getUserDietPlan = (id) => api.get(`/user-diets/${id}`);
+export const createUserDietPlan = (data) => api.post('/user-diets', data);
+export const updateUserDietPlan = (id, data) => api.put(`/user-diets/${id}`, data);
+export const deleteUserDietPlan = (id) => api.delete(`/user-diets/${id}`);
 
 export default api;
 

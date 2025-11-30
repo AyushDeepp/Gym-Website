@@ -11,66 +11,75 @@ const Footer = () => {
       { path: '/about', label: 'About' },
       { path: '/programs', label: 'Programs' },
       { path: '/exercises', label: 'Exercises' },
-      { path: '/plans', label: 'Membership Plans' },
-      { path: '/tools', label: 'BMI & Tools' },
+      { path: '/trainers', label: 'Trainers' },
+      { path: '/plans', label: 'Plans' },
     ],
-    more: [
-      { path: '/timetable', label: 'Class Timetable' },
+    resources: [
+      { path: '/timetable', label: 'Timetable' },
       { path: '/gallery', label: 'Gallery' },
       { path: '/testimonials', label: 'Testimonials' },
+      { path: '/tools', label: 'Tools' },
       { path: '/help-center', label: 'Help Center' },
       { path: '/transformations', label: 'Transformations' },
-      { path: '/contact', label: 'Contact Us' },
     ],
   };
 
   return (
     <footer className="bg-primary-darker border-t border-primary-gray">
-      <div className="container-responsive max-w-container py-8 sm:py-10 md:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="text-xl sm:text-2xl font-bold gradient-text-red mb-3 sm:mb-4">ELITE GYM</h3>
-            <p className="text-gray-400 text-xs sm:text-sm mb-4 max-w-md">
+      <div className="container-responsive py-8 md:py-10 lg:py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-8">
+          {/* Brand Section */}
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+            <Link to="/" className="inline-block mb-3">
+              <h3 className="text-xl md:text-2xl font-extrabold gradient-text-red">
+                ELITE GYM
+              </h3>
+            </Link>
+            <p className="text-gray-400 text-sm mb-4 max-w-sm leading-relaxed">
               Transform your body, transform your life. Join the elite community of fitness enthusiasts.
             </p>
-            <div className="flex space-x-4">
+            {/* Social Media */}
+            <div className="flex items-center gap-3">
               <motion.a
                 href="#"
-                whileHover={{ scale: 1.2 }}
-                className="text-gray-400 hover:text-primary-red transition-colors"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 rounded-lg bg-primary-gray border border-primary-lightGray flex items-center justify-center text-gray-400 hover:text-primary-red hover:border-primary-red transition-all"
                 aria-label="Facebook"
               >
-                <FiFacebook className="w-5 h-5" />
+                <FiFacebook className="w-4 h-4" />
               </motion.a>
               <motion.a
                 href="#"
-                whileHover={{ scale: 1.2 }}
-                className="text-gray-400 hover:text-primary-red transition-colors"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 rounded-lg bg-primary-gray border border-primary-lightGray flex items-center justify-center text-gray-400 hover:text-primary-red hover:border-primary-red transition-all"
                 aria-label="Instagram"
               >
-                <FiInstagram className="w-5 h-5" />
+                <FiInstagram className="w-4 h-4" />
               </motion.a>
               <motion.a
                 href="#"
-                whileHover={{ scale: 1.2 }}
-                className="text-gray-400 hover:text-primary-red transition-colors"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 rounded-lg bg-primary-gray border border-primary-lightGray flex items-center justify-center text-gray-400 hover:text-primary-red hover:border-primary-red transition-all"
                 aria-label="Twitter"
               >
-                <FiTwitter className="w-5 h-5" />
+                <FiTwitter className="w-4 h-4" />
               </motion.a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Quick Links</h4>
-            <ul className="space-y-2">
+          <div className="col-span-1">
+            <h4 className="text-white font-semibold mb-4 text-sm md:text-base">Quick Links</h4>
+            <ul className="space-y-2.5">
               {footerLinks.quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-primary-blue transition-colors text-xs sm:text-sm"
+                    className="text-gray-400 hover:text-primary-red transition-colors text-sm inline-block"
                   >
                     {link.label}
                   </Link>
@@ -79,15 +88,15 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* More Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">More</h4>
-            <ul className="space-y-2">
-              {footerLinks.more.map((link) => (
+          {/* Resources */}
+          <div className="col-span-1">
+            <h4 className="text-white font-semibold mb-4 text-sm md:text-base">Resources</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.resources.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-primary-blue transition-colors text-xs sm:text-sm"
+                    className="text-gray-400 hover:text-primary-red transition-colors text-sm inline-block"
                   >
                     {link.label}
                   </Link>
@@ -97,27 +106,59 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Contact Us</h4>
-            <ul className="space-y-2 text-gray-400 text-xs sm:text-sm">
-              <li className="flex items-start sm:items-center space-x-2">
-                <FiMapPin className="text-primary-red mt-1 sm:mt-0 flex-shrink-0" />
-                <span>123 Fitness Street, City, State 12345</span>
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+            <h4 className="text-white font-semibold mb-4 text-sm md:text-base">Contact Us</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <FiMapPin className="text-primary-red mt-0.5 flex-shrink-0 w-4 h-4" />
+                <span className="text-gray-400 text-sm leading-relaxed">
+                  123 Fitness Street, City, State 12345
+                </span>
               </li>
-              <li className="flex items-center space-x-2">
-                <FiPhone className="text-primary-red flex-shrink-0" />
-                <span>+1 (555) 123-4567</span>
+              <li className="flex items-center gap-3">
+                <FiPhone className="text-primary-red flex-shrink-0 w-4 h-4" />
+                <a
+                  href="tel:+15551234567"
+                  className="text-gray-400 hover:text-primary-red transition-colors text-sm"
+                >
+                  +1 (555) 123-4567
+                </a>
               </li>
-              <li className="flex items-center space-x-2">
-                <FiMail className="text-primary-red flex-shrink-0" />
-                <span>info@elitegym.com</span>
+              <li className="flex items-center gap-3">
+                <FiMail className="text-primary-red flex-shrink-0 w-4 h-4" />
+                <a
+                  href="mailto:info@elitegym.com"
+                  className="text-gray-400 hover:text-primary-red transition-colors text-sm"
+                >
+                  info@elitegym.com
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-primary-gray mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
-          <p>&copy; {currentYear} Elite Gym. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-primary-gray pt-6 md:pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+              &copy; {currentYear} Elite Gym. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4 text-xs sm:text-sm">
+              <Link
+                to="/contact"
+                className="text-gray-400 hover:text-primary-red transition-colors"
+              >
+                Contact
+              </Link>
+              <span className="text-gray-600">|</span>
+              <Link
+                to="/help-center"
+                className="text-gray-400 hover:text-primary-red transition-colors"
+              >
+                Help Center
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -125,4 +166,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

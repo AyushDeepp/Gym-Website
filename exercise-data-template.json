@@ -1,0 +1,169 @@
+{
+  "exerciseTemplate": {
+    "name": "Exercise Name (e.g., 'Barbell Bench Press')",
+    "slug": "auto-generated-from-name (lowercase, hyphens)",
+    "muscleGroup": "chest | back | shoulders | arms | legs | core",
+    "subMuscles": [
+      "For chest: 'upper chest' | 'middle chest' | 'lower chest'",
+      "For back: 'lats' | 'traps' | 'upper back' | 'lower back' | 'rhomboids'",
+      "For shoulders: 'front delts' | 'lateral delts' | 'rear delts'",
+      "For arms: 'biceps' | 'triceps' | 'forearms'",
+      "For legs: 'quads' | 'hamstrings' | 'glutes' | 'calves'",
+      "For core: 'upper abs' | 'lower abs' | 'obliques' | 'stability'"
+    ],
+    "equipment": [
+      "bodyweight | dumbbell | barbell | kettlebells | cables | machines | resistance bands | cardio machines | none"
+    ],
+    "movementType": "push | pull | squat | hinge | lunge | rotation | anti-rotation | carry | cardio | isometric",
+    "difficulty": "beginner | intermediate | advanced",
+    "goals": [
+      "muscle building | strength training | fat loss conditioning | mobility/stretching | warm-up activation | rehabilitation"
+    ],
+    "exerciseType": "compound | isolation",
+    "description": "A detailed description of the exercise, what it targets, and why it's effective.",
+    "instructions": [
+      "Step 1: Detailed instruction",
+      "Step 2: Detailed instruction",
+      "Step 3: Detailed instruction",
+      "Continue with more steps as needed"
+    ],
+    "cues": [
+      "Mind-muscle connection cue 1",
+      "Mind-muscle connection cue 2",
+      "Mind-muscle connection cue 3"
+    ],
+    "setsReps": {
+      "strength": "3-5 sets × 3–5 reps",
+      "hypertrophy": "3–4 × 8–12",
+      "endurance": "2–3 × 15–20"
+    },
+    "videoUrl": "YouTube URL (full URL, embed URL, or youtu.be short URL)",
+    "imageUrl": "URL to exercise image",
+    "commonMistakes": [
+      "Common mistake 1",
+      "Common mistake 2",
+      "Common mistake 3"
+    ],
+    "variations": [
+      "Variation 1 (easier or harder version)",
+      "Variation 2",
+      "Variation 3"
+    ],
+    "alternativeNames": [
+      "Alternative name 1",
+      "Alternative name 2"
+    ],
+    "safetyTips": [
+      "Safety tip 1",
+      "Safety tip 2",
+      "Safety tip 3"
+    ],
+    "suggestedWarmups": [
+      "Warm-up exercise 1",
+      "Warm-up exercise 2"
+    ]
+  },
+  "exampleExercise": {
+    "name": "Barbell Bench Press",
+    "slug": "barbell-bench-press",
+    "muscleGroup": "chest",
+    "subMuscles": ["upper chest", "middle chest", "lower chest"],
+    "equipment": ["barbell"],
+    "movementType": "push",
+    "difficulty": "intermediate",
+    "goals": ["muscle building", "strength training"],
+    "exerciseType": "compound",
+    "description": "The barbell bench press is a compound exercise that primarily targets the chest, shoulders, and triceps. It's one of the most effective exercises for building upper body strength and muscle mass.",
+    "instructions": [
+      "Lie flat on a bench with your feet firmly on the ground.",
+      "Grip the barbell slightly wider than shoulder-width apart.",
+      "Unrack the bar and hold it directly over your chest with arms extended.",
+      "Lower the bar to your chest with control, keeping your elbows at a 45-degree angle.",
+      "Press the bar back up explosively until your arms are fully extended.",
+      "Keep your core tight and maintain a slight arch in your back throughout the movement."
+    ],
+    "cues": [
+      "Retract your shoulder blades before unracking.",
+      "Keep your wrists straight and grip tight.",
+      "Control the descent - 2-3 seconds down.",
+      "Drive through your feet for stability.",
+      "Squeeze your chest at the top of the movement."
+    ],
+    "setsReps": {
+      "strength": "3-5 sets × 3–5 reps",
+      "hypertrophy": "3–4 × 8–12",
+      "endurance": "2–3 × 15–20"
+    },
+    "videoUrl": "https://www.youtube.com/embed/rT7DgCr-3pg",
+    "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800",
+    "commonMistakes": [
+      "Bouncing the bar off the chest",
+      "Flaring elbows too wide (should be 45 degrees)",
+      "Lifting feet off the ground",
+      "Not controlling the descent",
+      "Arching back excessively"
+    ],
+    "variations": [
+      "Incline Bench Press (upper chest focus)",
+      "Decline Bench Press (lower chest focus)",
+      "Dumbbell Bench Press (greater range of motion)",
+      "Close-Grip Bench Press (triceps focus)"
+    ],
+    "alternativeNames": ["Flat Bench Press", "BB Bench Press"],
+    "safetyTips": [
+      "Always use a spotter when lifting heavy weights",
+      "Use safety bars or spotters in a power rack",
+      "Start with lighter weights to perfect form",
+      "Warm up thoroughly before heavy sets"
+    ],
+    "suggestedWarmups": [
+      "Light bench press (50% of working weight)",
+      "Push-ups",
+      "Shoulder mobility exercises"
+    ]
+  },
+  "fieldDescriptions": {
+    "name": "Required. Full name of the exercise.",
+    "slug": "Required. URL-friendly version of name (auto-generated if not provided). Lowercase, hyphens instead of spaces.",
+    "muscleGroup": "Required. Main muscle group: chest, back, shoulders, arms, legs, or core.",
+    "subMuscles": "Required. Array of specific muscles targeted. Must match the enum values for the selected muscleGroup.",
+    "equipment": "Required. Array of equipment needed. Can include multiple items.",
+    "movementType": "Required. Type of movement pattern.",
+    "difficulty": "Required. Skill level: beginner, intermediate, or advanced.",
+    "goals": "Required. Array of training goals this exercise helps achieve.",
+    "exerciseType": "Optional. compound or isolation. Defaults to compound.",
+    "description": "Required. 2-3 sentences describing the exercise and its benefits.",
+    "instructions": "Required. Array of step-by-step instructions (minimum 4-6 steps).",
+    "cues": "Optional. Array of mind-muscle connection cues (3-5 items recommended).",
+    "setsReps": "Optional. Object with strength, hypertrophy, and endurance recommendations. Defaults provided if omitted.",
+    "videoUrl": "Optional. YouTube URL (any format) or direct video URL.",
+    "imageUrl": "Optional. URL to exercise demonstration image.",
+    "commonMistakes": "Optional. Array of common form mistakes to avoid (3-5 items recommended).",
+    "variations": "Optional. Array of exercise variations (easier/harder versions).",
+    "alternativeNames": "Optional. Array of alternative names for the exercise.",
+    "safetyTips": "Optional. Array of safety considerations (3-5 items recommended).",
+    "suggestedWarmups": "Optional. Array of recommended warm-up exercises."
+  },
+  "validEnumValues": {
+    "muscleGroup": ["chest", "back", "shoulders", "arms", "legs", "core"],
+    "subMuscles": {
+      "chest": ["upper chest", "middle chest", "lower chest"],
+      "back": ["lats", "traps", "upper back", "lower back", "rhomboids"],
+      "shoulders": ["front delts", "lateral delts", "rear delts"],
+      "arms": ["biceps", "triceps", "forearms"],
+      "legs": ["quads", "hamstrings", "glutes", "calves"],
+      "core": ["upper abs", "lower abs", "obliques", "stability"]
+    },
+    "equipment": ["bodyweight", "dumbbell", "barbell", "kettlebells", "cables", "machines", "resistance bands", "cardio machines", "none"],
+    "movementType": ["push", "pull", "squat", "hinge", "lunge", "rotation", "anti-rotation", "carry", "cardio", "isometric"],
+    "difficulty": ["beginner", "intermediate", "advanced"],
+    "goals": ["muscle building", "strength training", "fat loss conditioning", "mobility/stretching", "warm-up activation", "rehabilitation"],
+    "exerciseType": ["compound", "isolation"]
+  }
+}
+
+
+
+
+
+

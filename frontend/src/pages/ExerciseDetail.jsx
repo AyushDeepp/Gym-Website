@@ -11,12 +11,15 @@ import {
   FiXCircle,
   FiAlertTriangle,
   FiZap,
+  FiPlus,
 } from "react-icons/fi";
 import { getExercise } from "../utils/api";
+import { useAuth } from "../context/AuthContext";
 
 const ExerciseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const [exercise, setExercise] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeRepScheme, setActiveRepScheme] = useState("hypertrophy");
@@ -148,6 +151,15 @@ const ExerciseDetail = () => {
               <p className="text-gray-300 text-base leading-relaxed mb-6">
                 {exercise.description}
               </p>
+              {isAuthenticated && (
+                <button
+                  onClick={() => navigate(`/dashboard/workouts?addExercise=${exercise._id}`)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-red text-white font-semibold hover:bg-primary-red/90 transition-colors mb-6"
+                >
+                  <FiPlus className="text-lg" />
+                  Add to Workout Plan
+                </button>
+              )}
               {exercise.goals?.length > 0 && (
                 <div className="mb-4">
                   <p className="text-gray-400 text-sm mb-2">Goals:</p>
@@ -349,13 +361,13 @@ const ExerciseDetail = () => {
             transition={{ delay: 0.4 }}
             className="bg-primary-gray/70 border border-primary-lightGray rounded-2xl p-6 sm:p-8"
           >
-            <h2 className="text-white text-2xl font-bold mb-4">Recommended Sets & Reps</h2>
-            <div className="flex gap-3 mb-4">
+            <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">Recommended Sets & Reps</h2>
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
               {['strength', 'hypertrophy', 'endurance'].map((scheme) => (
                 <button
                   key={scheme}
                   onClick={() => setActiveRepScheme(scheme)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors capitalize ${
+                  className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors capitalize flex-1 sm:flex-initial min-w-[80px] ${
                     activeRepScheme === scheme
                       ? "bg-primary-red text-white"
                       : "bg-primary-darker border border-primary-lightGray text-gray-300 hover:border-primary-red"

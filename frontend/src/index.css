@@ -122,3 +122,53 @@ body {
   background-clip: text;
 }
 
+/* Infinite Testimonial Scroll Animation */
+.testimonial-scroll {
+  display: flex;
+  animation: scroll-testimonials 40s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-testimonials {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Small screen: 280px card width, 24px gap (gap-6 = 1.5rem), 6 cards with 5 gaps */
+    transform: translateX(calc(-280px * 6 - 24px * 5));
+  }
+}
+
+@media (min-width: 640px) {
+  .testimonial-scroll {
+    animation: scroll-testimonials-lg 40s linear infinite;
+  }
+  
+  @keyframes scroll-testimonials-lg {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Large screen: 400px card width, 32px gap (gap-8 = 2rem), 6 cards with 5 gaps */
+      transform: translateX(calc(-400px * 6 - 32px * 5));
+    }
+  }
+}
+
+/* Infinite Website Features Scroll Animation (Mobile Only) */
+.website-features-scroll {
+  display: flex;
+  animation: scroll-website-features 35s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-website-features {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Mobile: 280px card width, 16px gap (gap-4 = 1rem), 8 cards with 7 gaps */
+    transform: translateX(calc(-280px * 8 - 16px * 7));
+  }
+}
+

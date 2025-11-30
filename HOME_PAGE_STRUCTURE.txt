@@ -1,0 +1,445 @@
+================================================================================
+                    ELITE GYM - HOME PAGE STRUCTURE
+================================================================================
+
+This document provides a detailed breakdown of the Home Page structure, including
+all sections and their content.
+
+================================================================================
+                            PAGE OVERVIEW
+================================================================================
+
+The Home Page is the landing page of the Elite Gym website, designed to showcase
+the gym's offerings and encourage visitor engagement. It features a modern dark
+theme with neon red (#FF006E) and blue (#00F5FF) accents, smooth animations, and
+a fully responsive design.
+
+================================================================================
+                            SECTION BREAKDOWN
+================================================================================
+
+1. HERO SECTION
+   -------------
+   Location: Top of the page (fullscreen)
+   
+   Components:
+   - Video Background:
+     * Fullscreen video playing on loop
+     * Video file: km_20251126_1080p_60f_20251126_231754.mp4
+     * Auto-play, muted, loop enabled
+     * Responsive object-cover
+   
+   - Overlay Effects:
+     * Gradient overlay (from-primary-darker/40 via-primary-dark/30 to-primary-gray/40)
+     * Black overlay (bg-black/20) for text readability
+   
+   - Animated Background Elements:
+     * Red circular blur effect (top-left, animated movement)
+     * Blue circular blur effect (bottom-right, animated movement)
+     * Opacity: 10% for subtle effect
+   
+   - Main Content:
+     * Heading: "Transform Your Body Transform Your Life"
+       - "Transform" and "Your Body" with gradient red text
+       - "Transform" and "Your Life" with white and gradient blue text
+       - Responsive text sizes (4xl to 7xl)
+     * Subheading: 
+       - "Join the elite community of fitness enthusiasts. Achieve your goals 
+          with world-class trainers and state-of-the-art facilities."
+       - Gray text (text-gray-300)
+       - Responsive text sizes (base to 2xl)
+     * Call-to-Action Buttons:
+       - "Get Started" button (primary-red background, links to /plans)
+       - "Learn More" button (blue border, links to /about)
+       - Hover animations (scale 1.05)
+       - Responsive layout (stacked on mobile, side-by-side on desktop)
+   
+   - Scroll Indicator:
+     * Animated mouse scroll indicator at bottom
+     * Red border with animated dot inside
+     * Vertical bounce animation
+
+   Animation Details:
+   - Fade-in and slide-up animations on page load
+   - Staggered delays for heading, subheading, and buttons
+   - Continuous animations for background elements and scroll indicator
+
+================================================================================
+
+2. STATISTICS SECTION
+   -------------------
+   Location: Immediately after Hero section
+   Background: bg-primary-dark
+   
+   Content:
+   - Grid Layout: 2 columns on mobile, 4 columns on desktop
+   - Four Stat Cards:
+     1. Active Members: "5000+"
+     2. Expert Trainers: "50+"
+     3. Classes Weekly: "100+"
+     4. Years Experience: "15+"
+   
+   Each Stat Card Contains:
+   - Large number with gradient red text (Counter component)
+   - Label text in gray (text-gray-400)
+   - Animated counter that increments to target value
+   - Fade-in animation on scroll into view
+   - Staggered animation delays (0.1s per card)
+   
+   Technical Details:
+   - Uses Counter component for animated numbers
+   - Responsive text sizes (2xl to 5xl for numbers)
+   - Viewport-based animations (once: true)
+
+================================================================================
+
+3. PROGRAMS PREVIEW SECTION
+   -------------------------
+   Location: After Statistics section
+   Background: Default (primary-darker)
+   
+   Content:
+   - Section Title:
+     * Title: "Our Programs"
+     * Subtitle: "Choose from a variety of fitness programs designed to help 
+                 you achieve your goals"
+     * Centered alignment
+   
+   - Programs Grid:
+     * Displays first 3 programs from database
+     * Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+     * Each program displayed in ProgramCard component
+     * Cards show:
+       - Program name
+       - Description
+       - Duration and difficulty
+       - Features list
+       - Pricing
+       - Program image
+   
+   - View All Button:
+     * Border style (primary-blue border)
+     * Text: "View All Programs"
+     * Links to /programs page
+     * Hover effects (scale and color change)
+   
+   - Loading State:
+     * Shows "Loading programs..." if data is being fetched
+   
+   Data Source:
+   - Fetched from /api/programs endpoint
+   - Automatically refetches when window gains focus
+   - Error handling for failed requests
+
+================================================================================
+
+4. TRAINERS SHOWCASE SECTION
+   ---------------------------
+   Location: After Programs section
+   Background: bg-primary-dark
+   
+   Content:
+   - Section Title:
+     * Title: "Expert Trainers"
+     * Subtitle: "Meet our world-class trainers dedicated to your success"
+     * Centered alignment
+   
+   - Trainers Grid:
+     * Displays first 3 trainers from database
+     * Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+     * Each trainer displayed in TrainerCard component
+     * Cards show:
+       - Trainer name and photo
+       - Specialization
+       - Experience (years)
+       - Social media links (Instagram, Facebook, Twitter)
+       - Bio information
+   
+   - Meet All Trainers Button:
+     * Border style (primary-red border)
+     * Text: "Meet All Trainers"
+     * Links to /trainers page
+     * Hover effects (scale and background color change)
+   
+   - Loading State:
+     * Shows "Loading trainers..." if data is being fetched
+   
+   Data Source:
+   - Fetched from /api/trainers endpoint
+   - Automatically refetches when window gains focus
+
+================================================================================
+
+5. MEMBERSHIP PLANS PREVIEW SECTION
+   ---------------------------------
+   Location: After Trainers section
+   Background: Default (primary-darker)
+   
+   Content:
+   - Section Title:
+     * Title: "Membership Plans"
+     * Subtitle: "Choose the perfect plan for your fitness journey"
+     * Centered alignment
+   
+   - Plans Grid:
+     * Displays first 3 membership plans from database
+     * Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+     * Each plan displayed in PlanCard component
+     * Cards show:
+       - Plan name
+       - Price
+       - Duration
+       - Features list
+       - Benefits
+       - Purchase button (with Razorpay integration)
+   
+   - View All Plans Button:
+     * Solid background (primary-red)
+     * Text: "View All Plans"
+     * Links to /plans page
+     * Glow effect (glow-red)
+     * Hover effects
+   
+   - Loading State:
+     * Shows "Loading plans..." if data is being fetched
+   
+   Data Source:
+   - Fetched from /api/plans endpoint
+   - Automatically refetches when window gains focus
+
+================================================================================
+
+6. TESTIMONIALS SECTION
+   ---------------------
+   Location: After Membership Plans section
+   Background: bg-primary-dark
+   
+   Content:
+   - Section Title:
+     * Title: "What Our Members Say"
+     * Subtitle: "Real stories from real people who transformed their lives"
+     * Centered alignment
+   
+   - Testimonials Grid:
+     * Displays 3 static testimonials
+     * Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+     * Each testimonial displayed in TestimonialCard component
+     * Testimonials:
+       1. John Doe (Bodybuilder)
+          - "Elite Gym transformed my life. The trainers are world-class and 
+             the facilities are top-notch."
+       2. Jane Smith (Fitness Enthusiast)
+          - "Best gym experience I've ever had. The community is amazing and the 
+             results speak for themselves."
+       3. Mike Johnson (Athlete)
+          - "Professional training and state-of-the-art equipment. Highly 
+             recommend to anyone serious about fitness."
+   
+   - Card Content:
+     * Customer name
+     * Role/title
+     * Testimonial message
+     * Styling with animations
+
+================================================================================
+
+7. CALL-TO-ACTION (CTA) SECTION
+   ----------------------------
+   Location: After Testimonials section (final section)
+   Background: Default (primary-darker)
+   
+   Content:
+   - Gradient Background Box:
+     * Gradient: from-primary-red to-primary-blue
+     * Rounded corners (xl to 2xl)
+     * Padding: responsive (6 to 12)
+     * Centered content
+   
+   - Content:
+     * Heading: "Ready to Start Your Fitness Journey?"
+       - White text, bold
+       - Responsive sizes (2xl to 4xl)
+     * Description:
+       - "Join thousands of members who have transformed their lives at Elite Gym"
+       - White text with opacity (text-white/90)
+       - Responsive sizes (sm to lg)
+       - Max width: 2xl, centered
+     * CTA Button:
+       - "Get Started Today"
+       - White background, red text
+       - Links to /plans page
+       - Hover effects (scale and background color change)
+   
+   - Animation:
+     * Fade-in and slide-up on scroll into view
+     * Viewport-based (once: true)
+
+================================================================================
+
+                            LAYOUT & STYLING
+================================================================================
+
+Overall Layout:
+- Full-width sections
+- Container with max-width constraints (max-w-container)
+- Responsive padding (section-padding class)
+- Consistent spacing between sections
+
+Color Scheme:
+- Primary Darker: Main background
+- Primary Dark: Alternate section background
+- Primary Red (#FF006E): Accent color, buttons, highlights
+- Primary Blue (#00F5FF): Secondary accent, borders
+- Gray shades: Text and borders
+- White: Headings and important text
+
+Typography:
+- Headings: Bold, large sizes (2xl to 7xl)
+- Body text: Gray shades (300-400)
+- Responsive font sizes (sm, base, lg, xl, 2xl, etc.)
+
+Animations:
+- Framer Motion library used throughout
+- Fade-in animations
+- Slide-up animations
+- Scale animations on hover
+- Staggered delays for sequential elements
+- Viewport-based triggers (whileInView)
+
+Responsive Breakpoints:
+- Mobile: Default (no prefix)
+- Small: sm: (640px+)
+- Medium: md: (768px+)
+- Large: lg: (1024px+)
+- Extra Large: xl: (1280px+)
+
+================================================================================
+
+                            COMPONENTS USED
+================================================================================
+
+1. Hero Component
+   - Fullscreen hero section with video background
+   - Animated content and buttons
+   - Scroll indicator
+
+2. SectionTitle Component
+   - Reusable section header
+   - Title and subtitle
+   - Centered alignment option
+
+3. ProgramCard Component
+   - Displays program information
+   - Image, name, description, features, pricing
+   - Hover effects
+
+4. TrainerCard Component
+   - Displays trainer information
+   - Photo, name, specialization, social links
+   - Hover effects
+
+5. PlanCard Component
+   - Displays membership plan information
+   - Price, features, benefits
+   - Purchase button integration
+
+6. TestimonialCard Component
+   - Displays customer testimonials
+   - Name, role, message
+   - Styling and animations
+
+7. Counter Component
+   - Animated number counter
+   - Increments to target value
+   - Used in statistics section
+
+================================================================================
+
+                            DATA FLOW
+================================================================================
+
+1. Page Load:
+   - Component mounts
+   - useEffect hooks trigger
+   - API calls made to fetch:
+     * Programs (first 3)
+     * Trainers (first 3)
+     * Plans (first 3)
+
+2. Data Fetching:
+   - Promise.all() used for parallel API calls
+   - Data stored in component state
+   - Loading states managed
+   - Error handling implemented
+
+3. Data Display:
+   - Conditional rendering based on data availability
+   - Loading states shown while fetching
+   - Empty states handled gracefully
+
+4. Auto-Refresh:
+   - Window focus event listener
+   - Refetches data when window gains focus
+   - Ensures latest data is displayed
+
+================================================================================
+
+                            USER INTERACTIONS
+================================================================================
+
+1. Navigation:
+   - "Get Started" → /plans page
+   - "Learn More" → /about page
+   - "View All Programs" → /programs page
+   - "Meet All Trainers" → /trainers page
+   - "View All Plans" → /plans page
+   - "Get Started Today" → /plans page
+
+2. Hover Effects:
+   - Buttons scale up (1.05x)
+   - Cards have border color changes
+   - Smooth transitions
+
+3. Scroll Behavior:
+   - Page scrolls to top on mount
+   - Smooth scrolling enabled
+   - Scroll indicator at bottom of hero
+
+4. Animations:
+   - Elements animate on scroll into view
+   - Staggered animations for sequential items
+   - Continuous animations for background elements
+
+================================================================================
+
+                            TECHNICAL DETAILS
+================================================================================
+
+Framework: React 18
+Routing: React Router v6
+Animations: Framer Motion
+Styling: Tailwind CSS
+API Calls: Axios (via utils/api)
+State Management: React Hooks (useState, useEffect)
+
+Key Functions:
+- fetchData(): Fetches programs, trainers, and plans
+- Auto-scroll to top on component mount
+- Window focus event listener for data refresh
+
+Performance:
+- Lazy loading for images
+- Optimized animations
+- Efficient re-renders
+- Parallel API calls
+
+Accessibility:
+- Semantic HTML
+- Proper heading hierarchy
+- Alt text for images
+- Keyboard navigation support
+
+================================================================================
+                           END OF DOCUMENT
+================================================================================
+

@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 
-const TestimonialCard = ({ testimonial, index }) => {
+const TestimonialCard = ({ testimonial, index, disableAnimation = false }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={disableAnimation ? { opacity: 1 } : { opacity: 0, y: 50 }}
+      whileInView={disableAnimation ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-primary-gray rounded-xl p-6 border border-primary-lightGray hover:border-primary-red transition-all"
+      transition={disableAnimation ? {} : { duration: 0.5, delay: index * 0.1 }}
+      className="bg-primary-gray rounded-xl p-6 border border-primary-lightGray hover:border-primary-red transition-all h-full"
     >
       <div className="flex items-center mb-4">
         {[...Array(5)].map((_, i) => (

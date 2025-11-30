@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import heroVideo from '../assets/km_20251126_1080p_60f_20251126_231754.mp4';
 
 const Hero = () => {
+  const { isAuthenticated, isVisitor, isMember } = useAuth();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
@@ -85,24 +87,62 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
           >
-            <Link to="/plans">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary-red text-white text-sm sm:text-base font-semibold rounded-lg glow-red hover:bg-opacity-90 transition-all"
-              >
-                Get Started
-              </motion.button>
-            </Link>
-            <Link to="/about">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary-blue text-primary-blue text-sm sm:text-base font-semibold rounded-lg hover:bg-primary-blue hover:text-white transition-all"
-              >
-                Learn More
-              </motion.button>
-            </Link>
+            {isMember ? (
+              // Member: Only Dashboard button
+              <Link to="/dashboard">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary-red text-white text-sm sm:text-base font-semibold rounded-lg glow-red hover:bg-opacity-90 transition-all"
+                >
+                  Dashboard
+                </motion.button>
+              </Link>
+            ) : isVisitor ? (
+              // Visitor: Be a Member and Go to Dashboard buttons
+              <>
+                <Link to="/plans">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary-red text-white text-sm sm:text-base font-semibold rounded-lg glow-red hover:bg-opacity-90 transition-all"
+                  >
+                    Be a Member
+                  </motion.button>
+                </Link>
+                <Link to="/dashboard">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary-blue text-primary-blue text-sm sm:text-base font-semibold rounded-lg hover:bg-primary-blue hover:text-white transition-all"
+                  >
+                    Go to Dashboard
+                  </motion.button>
+                </Link>
+              </>
+            ) : (
+              // Logged out: Original buttons
+              <>
+                <Link to="/plans">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary-red text-white text-sm sm:text-base font-semibold rounded-lg glow-red hover:bg-opacity-90 transition-all"
+                  >
+                    Get Started
+                  </motion.button>
+                </Link>
+                <Link to="/about">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary-blue text-primary-blue text-sm sm:text-base font-semibold rounded-lg hover:bg-primary-blue hover:text-white transition-all"
+                  >
+                    Learn More
+                  </motion.button>
+                </Link>
+              </>
+            )}
           </motion.div>
         </motion.div>
       </div>

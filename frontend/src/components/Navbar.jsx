@@ -84,6 +84,7 @@ const Navbar = () => {
     { path: '/about', label: 'About', icon: FiInfo },
     { path: '/programs', label: 'Programs', icon: FaDumbbell },
     { path: '/exercises', label: 'Exercises', icon: FiActivity },
+    { path: '/trainers', label: 'Trainers', icon: FiUsers },
     { path: '/plans', label: 'Plans', icon: FiCreditCard },
     { path: '/timetable', label: 'Timetable', icon: FiCalendar },
     { path: '/gallery', label: 'Gallery', icon: FiImage },

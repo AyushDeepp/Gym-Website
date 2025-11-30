@@ -3,6 +3,17 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../components/SectionTitle';
 import { FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
 import { submitContact } from '../utils/api';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Fix for default marker icon in Leaflet with Vite
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -68,6 +79,11 @@ const Contact = () => {
     },
   ];
 
+  // Gym address and coordinates
+  // TODO: Update these coordinates with your actual gym location
+  const gymAddress = "123 Fitness Street, City, State 12345";
+  const gymCoordinates = [40.7128, -74.0060]; // Default: New York City (update with your gym's lat/lng)
+
   return (
     <div className="page-padding">
       <div className="container-responsive max-w-container">
@@ -76,6 +92,44 @@ const Contact = () => {
           subtitle="We'd love to hear from you. Send us a message and we'll respond as soon as possible."
           center
         />
+
+        {/* Map Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8 sm:mb-10 md:mb-12"
+        >
+          <div className="bg-primary-gray rounded-xl p-4 sm:p-6 border border-primary-lightGray">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2">
+              <FiMapPin className="text-primary-red" />
+              Find Us
+            </h2>
+            <div className="w-full h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden border border-primary-lightGray">
+              <MapContainer
+                center={gymCoordinates}
+                zoom={15}
+                style={{ height: '100%', width: '100%', zIndex: 0 }}
+                scrollWheelZoom={true}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={gymCoordinates}>
+                  <Popup>
+                    <div className="text-center">
+                      <strong className="text-primary-red">Elite Gym</strong>
+                      <p className="text-sm text-gray-600 mt-1">{gymAddress}</p>
+                    </div>
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base mt-4 text-center">
+              {gymAddress}
+            </p>
+          </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
           {/* Contact Form */}
